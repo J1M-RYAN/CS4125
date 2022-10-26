@@ -1,4 +1,5 @@
 @page "/login"
+@using System.Diagnostics
 @inject NavigationManager UriHelper
 @layout EmptyLayout
 <Header/>
@@ -6,36 +7,59 @@
 <PageTitle>Login</PageTitle>
 <div class="card-container">
     <div class="login-form card">
-        <form action="action_page.php">
-            <div class="container-fluid">
+        <div class="container-fluid">
                 <div class="title">Login</div>
                 <p>Please fill in this form to login.</p>
 
                 <div>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <input type="text" @bind="@_emailValue" @oninput="OnEmailInputEvent" placeholder="Enter Email" name="email" id="email" required>
                 </div>
 
                 <div>
-                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                    <input type="password" @bind="@_passwordValue" @oninput="OnPasswordInputEvent" placeholder="Enter Password" name="psw" id="psw" required>
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" class="login-btn">Login</button>
+                    <button @onclick="@NavigateApp" class="login-btn">Login</button>
                 </div>
             </div>
 
             <div class="container signin">
                 <p>Don't have an account? <a href="" @onclick="@NavigateSignup">Sign up</a>.</p>
             </div>
-        </form>
     </div>
 </div>
 
 @code {
+    private string _emailValue="";
+    private string _passwordValue="";
 
+    private void OnEmailInputEvent(ChangeEventArgs changeEvent)
+    {
+        _emailValue = (string)changeEvent.Value;
+    }
+    private void OnPasswordInputEvent(ChangeEventArgs changeEvent)
+    {
+        _passwordValue = (string)changeEvent.Value;
+    }
     void NavigateSignup()
     {
         UriHelper.NavigateTo("/signup");
+    }
+    void NavigateApp()
+    {
+        Console.WriteLine(_emailValue);
+        Console.WriteLine(_passwordValue);
+
+        if (_emailValue.Length <= 1)
+        {
+            return;
+        }
+        if (_passwordValue.Length <= 1)
+        {
+            return;
+        }
+        UriHelper.NavigateTo("/app");
     }
 
 }
