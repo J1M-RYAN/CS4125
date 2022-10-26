@@ -44,17 +44,17 @@ body {
 
 p {
     line-height: 150%;
-    margin: 0 0 10rem;
+    margin: 0 0 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #2E4A74;
+    color: #38742e;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
-    font-size: 20rem;
-    margin: 0 0 15rem;
+    font-size: 3rem;
+    margin: 0 0 2rem;
     font-weight: normal;
 }
 
@@ -129,6 +129,9 @@ html[xmlns] .clearfix {
 
 * html .clearfix {
     height: 1%;
+}
+
+.container {
 }
 /* /END CLEARFIX */
 
