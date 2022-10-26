@@ -1,0 +1,38 @@
+@page "/login"
+@inject NavigationManager UriHelper
+@layout EmptyLayout
+
+<PageTitle>Sign Up</PageTitle>
+
+<form action="action_page.php">
+  <div class="container-fluid">
+    <h1>Login</h1>
+    <p>Please fill in this form to login.</p>
+    <hr>
+ 
+    <div>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+    </div>
+    
+    <div>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    </div>
+    
+    <hr>
+ 
+    <button type="submit" class="loginbtn">Login</button>
+  </div>
+ 
+  <div class="container signin">
+    <p>Don't have an account? <a href="" @onclick="@NavigateSignup" @onclick:preventDefault>Sign up</a>.</p>
+  
+    
+    </div>
+</form>
+
+@code {
+  void NavigateSignup()
+  {
+    UriHelper.NavigateTo("/signup");
+  }
+}
