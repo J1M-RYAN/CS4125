@@ -1,0 +1,13 @@
+﻿@inject NavigationManager UriHelper 
+
+<div class="header">
+    <img @onclick="@NavigateHome" class="logo" src="logo.png" alt="logo"/>
+    <h3 @onclick="@NavigateHome"> Farm Ledger </h3>
+</div>
+
+@code {
+    void NavigateHome()
+    {
+        UriHelper.NavigateTo("/");
+    }
+}

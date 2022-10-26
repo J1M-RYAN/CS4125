@@ -1,0 +1,15 @@
+﻿.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+}
+h3{
+    cursor: pointer;
+}
+.logo{
+    cursor: pointer;
+    height: 5rem;
+    width: 5rem;
+}
