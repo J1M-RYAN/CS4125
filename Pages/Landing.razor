@@ -1,5 +1,5 @@
 @page "/"
-@inject NavigationManager UriHelper 
+@inject NavigationManager UriHelper
 @layout EmptyLayout
 <Header/>
 <div class="hero">
@@ -7,12 +7,12 @@
         <div class="title">Farm Ledger</div>
         <div class="subtitle">Track your farm activity</div>
         <div>
-            <button class="landing-btn" @onclick=@NavigateLogin>Login</button>
-            <button class="landing-btn" @onclick=@NavigateSignup>Signup</button>
+            <button class="landing-btn" @onclick="@NavigateLogin">Login</button>
+            <button class="landing-btn" @onclick="@NavigateSignup">Signup</button>
         </div>
     </div>
     <img class="logoLarge" src="logo.png" alt="logo"/>
- 
+
 </div>
 
 <div class="pricing-cards">
@@ -46,54 +46,57 @@
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter" @onclick=@NavigateSignup>Signup for free</button> 
+            <button class="buttonFooter" @onclick="@NavigateSignup">Signup for free</button>
         </div>
     </div>
-    
+
     <div class="card">
-            <div class="cardTitle">Premium</div>
-            <div class="cardPrice">€25/month</div>
-            <div class="cardFeatures">
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Unlimited sites</div>
-                </div>
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Unlimited animals</div>
-                </div>
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Vaccine tracking</div>
-                </div>
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Weight tracking</div>
-                </div>
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Feed estimation</div>
-                </div>
-                <div class="cardFeature">
-                    <img class="tick" src="tick.png" alt="check mark"/>
-                    <div class="cardFeatureTitle">Wool estimation</div>
-                </div>
+        <div class="cardTitle">Premium</div>
+        <div class="cardPrice">€25/month</div>
+        <div class="cardFeatures">
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Unlimited sites</div>
             </div>
-            <div class="cardFooter">
-                <button class="buttonFooter upgradeButton" @onclick=@NavigateLogin>Upgrade</button> 
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Unlimited animals</div>
+            </div>
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Vaccine tracking</div>
+            </div>
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Weight tracking</div>
+            </div>
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Feed estimation</div>
+            </div>
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark"/>
+                <div class="cardFeatureTitle">Wool estimation</div>
             </div>
         </div>
-    
+        <div class="cardFooter">
+            <button class="buttonFooter upgradeButton" @onclick="@NavigateLogin">Upgrade</button>
+        </div>
+    </div>
+
 </div>
 
- 
+
 @code {
+
     void NavigateLogin()
     {
         UriHelper.NavigateTo("/login");
     }
+
     void NavigateSignup()
     {
         UriHelper.NavigateTo("/signup");
     }
+
 }

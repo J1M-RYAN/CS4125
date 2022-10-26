@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using CS4125.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +10,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
+if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Error");
 
 
 app.UseStaticFiles();

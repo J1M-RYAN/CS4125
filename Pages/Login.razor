@@ -5,34 +5,37 @@
 
 <PageTitle>Login</PageTitle>
 <div class="card-container">
-<div class="login-form card">
-  <form action="action_page.php">
-    <div class="container-fluid">
-      <div class="title">Login</div>
-      <p>Please fill in this form to login.</p>
+    <div class="login-form card">
+        <form action="action_page.php">
+            <div class="container-fluid">
+                <div class="title">Login</div>
+                <p>Please fill in this form to login.</p>
 
-      <div>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-      </div>
-    
-      <div>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-      </div>
-    
-      <div class="button-container">
-        <button type="submit" class="login-btn">Login</button>
-      </div>  
+                <div>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                </div>
+
+                <div>
+                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="login-btn">Login</button>
+                </div>
+            </div>
+
+            <div class="container signin">
+                <p>Don't have an account? <a href="" @onclick="@NavigateSignup">Sign up</a>.</p>
+            </div>
+        </form>
     </div>
- 
-    <div class="container signin">
-      <p>Don't have an account? <a href="" @onclick="@NavigateSignup">Sign up</a>.</p>
-    </div>
-  </form>
 </div>
-</div>
+
 @code {
-  void NavigateSignup()
-  {
-    UriHelper.NavigateTo("/signup");
-  }
+
+    void NavigateSignup()
+    {
+        UriHelper.NavigateTo("/signup");
+    }
+
 }

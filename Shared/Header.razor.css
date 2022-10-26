@@ -5,10 +5,12 @@
     gap: 1rem;
     align-items: center;
 }
-h3{
+
+h3 {
     cursor: pointer;
 }
-.logo{
+
+.logo {
     cursor: pointer;
     height: 5rem;
     width: 5rem;
