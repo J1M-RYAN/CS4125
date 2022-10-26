@@ -1,10 +1,4 @@
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 1rem;
-    align-items: center;
-}
+
 
 .logo{
     height: 5rem;
