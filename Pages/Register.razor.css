@@ -1,4 +1,4 @@
-.login-form{
+.login-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,12 +37,12 @@ input {
     max-width: 25rem;
 }
 
-.card-container{
+.card-container {
     display: flex;
     justify-content: center;
 }
 
-.button-container{
+.button-container {
     display: flex;
     justify-content: center;
 

@@ -1,42 +1,98 @@
 @page "/signup"
+@using Blazored.LocalStorage
+@using CS4125.Data
+@using CS4125.Controllers
 @inject NavigationManager UriHelper
+@inject ILocalStorageService localStorage
 @layout EmptyLayout
 <Header/>
 
 <PageTitle>Sign Up</PageTitle>
 <div class="card-container">
-  <div class="login-form card">
-    <form action="action_page.php">
-      <div class="container-fluid">
-        <div class="title">Sign Up</div>
-        <p>Please fill in this form to Register.</p>
+    <div class="login-form card">
+        <div class="container-fluid">
+            <div class="title">Sign Up</div>
+            <p>Please fill in this form to Register.</p>
 
-        <div>
-          <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            <div>
+                <input type="text" @bind="@email" @oninput="OnEmailInputEvent" placeholder="Email" name="email" id="email" required>
+            </div>
+
+            <div>
+                <input type="password" @bind="@password" @oninput="OnPasswordInputEvent" placeholder="Password" name="psw" id="psw" required>
+            </div>
+
+            <div>
+                <input type="password" @bind="@passwordRepeat" @oninput="OnRepeatPasswordInputEvent" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+            </div>
+            <div>
+                <input type="text" @bind="@firstName" @oninput="OnFirstNamedInputEvent" placeholder="First Name" name="first-name" id="first-name" required>
+            </div>
+            <div>
+                <input type="text" @bind="@lastName" @oninput="OnLastNameInputEvent" placeholder="Last Name" name="last-name" id="last-name" required>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="register-btn" @onclick="@RegisterUser">Register</button>
+            </div>
         </div>
-    
-        <div>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+        <div class="container signup">
+            <p>Already have an account? <a href="" @onclick="@NavigateLogin">Sign in</a>.</p>
         </div>
-     
-        <div>
-          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-        </div>
-        
-        <div class="button-container">
-          <button type="submit" class="register-btn">Register</button>
-        </div>  
-      </div>
- 
-      <div class="container signup">
-        <p>Already have an account? <a href="" @onclick="@NavigateLogin">Sign in</a>.</p>
-      </div>
-    </form>
-  </div>
+    </div>
 </div>
+
 @code {
-  void NavigateLogin()
-  {
-    UriHelper.NavigateTo("/login");
-  }
+    readonly System system = SystemController._system;
+    string email = "";
+    string password = "";
+    string passwordRepeat = "";
+    string firstName = "";
+    string lastName = "";
+
+    void OnEmailInputEvent(ChangeEventArgs changeEvent)
+    {
+        email = (string)changeEvent.Value;
+    }
+
+    void OnPasswordInputEvent(ChangeEventArgs changeEvent)
+    {
+        password = (string)changeEvent.Value;
+    }
+
+    void OnRepeatPasswordInputEvent(ChangeEventArgs changeEvent)
+    {
+        passwordRepeat = (string)changeEvent.Value;
+    }
+
+    void OnFirstNamedInputEvent(ChangeEventArgs changeEvent)
+    {
+        firstName = (string)changeEvent.Value;
+    }
+
+    void OnLastNameInputEvent(ChangeEventArgs changeEvent)
+    {
+        lastName = (string)changeEvent.Value;
+    }
+
+    void NavigateLogin()
+    {
+        Console.WriteLine("hello world");
+        UriHelper.NavigateTo("/login");
+    }
+
+    void RegisterUser()
+    {
+        system.RegisterFarmer(email, firstName, lastName, password);
+        SetUsername();
+        UriHelper.NavigateTo("/app");
+    }
+
+    async Task SetUsername()
+    {
+        await localStorage.SetItemAsync("name", firstName + " " + lastName);
+        var name = await localStorage.GetItemAsync<string>("name");
+    }
+
 }
