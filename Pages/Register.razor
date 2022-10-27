@@ -1,7 +1,9 @@
 @page "/signup"
+@using Blazored.LocalStorage
 @using CS4125.Data
 @using CS4125.Controllers
 @inject NavigationManager UriHelper
+@inject ILocalStorageService localStorage
 @layout EmptyLayout
 <Header/>
 
@@ -30,7 +32,7 @@
                 <input type="text" @bind="@lastName" @oninput="OnLastNameInputEvent" placeholder="Last Name" name="last-name" id="last-name" required>
             </div>
 
-            <div class="button-container" >
+            <div class="button-container">
                 <button type="submit" class="register-btn" @onclick="@RegisterUser">Register</button>
             </div>
         </div>
@@ -42,7 +44,7 @@
 </div>
 
 @code {
-    System system = SystemController._system;
+    readonly System system = SystemController._system;
     string email = "";
     string password = "";
     string passwordRepeat = "";
@@ -81,11 +83,16 @@
     }
 
     void RegisterUser()
-    { 
+    {
         system.RegisterFarmer(email, firstName, lastName, password);
-        
+        SetUsername();
         UriHelper.NavigateTo("/app");
     }
 
+    async Task SetUsername()
+    {
+        await localStorage.SetItemAsync("name", firstName + " " + lastName);
+        var name = await localStorage.GetItemAsync<string>("name");
+    }
 
 }
