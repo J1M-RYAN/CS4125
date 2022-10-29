@@ -24,7 +24,7 @@
         </div>
 
         <div class="container signin">
-            <p>Don't have an account? <a href="" @onclick="@NavigateSignup">Sign up</a>.</p>
+            <p>Don't have an account? <a href="" @onclick:preventDefault @onclick="@NavigateSignup">Sign up</a>.</p>
         </div>
     </div>
 </div>
