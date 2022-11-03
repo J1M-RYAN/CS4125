@@ -1,14 +1,13 @@
-
-
 using CS4125.Data;
+
 public class Site : ISite
 {
-    private HashSet<Animal> _animals;
+    private readonly HashSet<Animal> _animals;
     private string _name;
 
     public Site(string name, Address address)
     {
-        this._name = name;
+        _name = name;
         _animals = new HashSet<Animal>();
     }
 
@@ -24,8 +23,7 @@ public class Site : ISite
 
     public void CreateAnimal(string animalType, string breed)
     {
-        Animal animal = AnimalFactory.CreateAnimal(animalType, breed);
+        var animal = AnimalFactory.CreateAnimal(animalType, breed);
         AddAnimal(animal);
     }
-
 }

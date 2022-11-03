@@ -1,5 +1,5 @@
-
 namespace CS4125.Data;
+
 public class AnimalFactory
 {
     private static int _id;
@@ -16,5 +16,4 @@ public class AnimalFactory
                 throw new ArgumentException("Animal type not found");
         }
     }
-
 }

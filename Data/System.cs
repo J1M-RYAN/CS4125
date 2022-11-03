@@ -33,9 +33,6 @@ public class System : IRegister, ISubject
 
     public void Notify()
     {
-        foreach (var observer in _paidSubscribers)
-        {
-            observer.Update();
-        }
+        foreach (var observer in _paidSubscribers) observer.Update();
     }
 }

@@ -2,13 +2,13 @@ using CS4125.Data;
 
 public class Invoice
 {
-
-    private bool _paid;
     private DateTime _date;
 
-    private double _total;
-
     private Farmer _farmer;
+
+    private bool _paid;
+
+    private double _total;
 
     public Invoice(Farmer farmer, double total)
 
@@ -28,5 +28,4 @@ public class Invoice
     {
         _paid = true;
     }
-
 }

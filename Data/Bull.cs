@@ -5,8 +5,8 @@ public class Bull : Bovine, IMale
 
     public Bull(int id, DateTime dob, BovineBreed _breed) : base(id, dob, Sex.MALE, _breed)
     {
-        this._hasBullRing = false;
-        this._isCastrated = false;
+        _hasBullRing = false;
+        _isCastrated = false;
     }
 
     public bool isCastrated { get; set; }
@@ -20,10 +20,9 @@ public class Bull : Bovine, IMale
     {
         return _hasBullRing;
     }
+
     public void SetHasBullRing(bool hasBullRing)
     {
         _hasBullRing = hasBullRing;
     }
-
-
 }
