@@ -1,4 +1,4 @@
-using CS4125.Data;
+namespace CS4125.Data;
 
 public class Invoice
 {

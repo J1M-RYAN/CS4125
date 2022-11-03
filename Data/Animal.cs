@@ -1,3 +1,5 @@
+namespace CS4125.Data;
+
 public abstract class Animal
 {
     private readonly DateTime _dateOfBirth;

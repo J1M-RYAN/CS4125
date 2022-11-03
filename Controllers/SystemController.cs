@@ -6,13 +6,13 @@ public class SystemController
 {
     public static readonly Data.System System = new();
 
-    public static void AddSubscriber(Farmer f)
+    public static void AddSubscriber(IObserver f)
     {
         System.PaidSubscribers.Add(f);
     }
 
 
-    public static void RemoveSubscriber(Farmer f)
+    public static void RemoveSubscriber(IObserver f)
     {
         System.PaidSubscribers.Remove(f);
     }

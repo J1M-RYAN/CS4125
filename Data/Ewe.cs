@@ -1,3 +1,5 @@
+namespace CS4125.Data;
+
 public class Ewe : Ovine, IFemale
 {
     private bool _isPregnant;

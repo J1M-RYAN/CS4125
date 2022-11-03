@@ -1,3 +1,5 @@
+namespace CS4125.Data;
+
 public abstract class Equine : Animal
 {
     private EquineBreed _breed;

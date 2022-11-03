@@ -1,31 +1,7 @@
+namespace CS4125.Data;
+
 public abstract class Ovine : Animal
 {
-    public enum OvineBreed
-    {
-        BROWN_SWISS,
-        CHEVIOT,
-        CORRIE,
-        EAST_FRIESIAN,
-        FINNISH_LANDRACE,
-        HAMPSHIRE,
-        HORNED_DORSET,
-        ILE_DE_FRANCE,
-        KERRY_HILL,
-        LINCOLN,
-        MANX_LOAGHTAN,
-        MONTBELIARDE,
-        NORFOLK_HORN,
-        NORWEGIAN_DALE,
-        POLLED_DORSET,
-        SHROPSHIRE,
-        SOUTH_DOWN,
-        TEXEL,
-        WELSH_MOUNTAIN,
-        WELSH_WHITE,
-        WEST_FRIESIAN,
-        YAKIMA
-    }
-
     private readonly OvineBreed _breed;
     private double _woolYield;
 
@@ -38,54 +14,57 @@ public abstract class Ovine : Animal
 
     public double EstimatedWoolYield()
     {
-        switch (_breed)
+        return _breed switch
         {
-            case OvineBreed.BROWN_SWISS:
-                return 2.2;
-            case OvineBreed.CHEVIOT:
-                return 2.1;
-            case OvineBreed.CORRIE:
-                return 2.0;
-            case OvineBreed.EAST_FRIESIAN:
-                return 1.9;
-            case OvineBreed.FINNISH_LANDRACE:
-                return 1.8;
-            case OvineBreed.HAMPSHIRE:
-                return 1.7;
-            case OvineBreed.HORNED_DORSET:
-                return 1.6;
-            case OvineBreed.ILE_DE_FRANCE:
-                return 1.5;
-            case OvineBreed.KERRY_HILL:
-                return 1.4;
-            case OvineBreed.LINCOLN:
-                return 1.3;
-            case OvineBreed.MANX_LOAGHTAN:
-                return 1.2;
-            case OvineBreed.MONTBELIARDE:
-                return 1.1;
-            case OvineBreed.NORFOLK_HORN:
-                return 1.0;
-            case OvineBreed.NORWEGIAN_DALE:
-                return 3.1;
-            case OvineBreed.POLLED_DORSET:
-                return 3.0;
-            case OvineBreed.SHROPSHIRE:
-                return 3.1;
-            case OvineBreed.SOUTH_DOWN:
-                return 3.5;
-            case OvineBreed.TEXEL:
-                return 2.2;
-            case OvineBreed.WELSH_MOUNTAIN:
-                return 5.3;
-            case OvineBreed.WELSH_WHITE:
-                return 4.2;
-            case OvineBreed.WEST_FRIESIAN:
-                return 3.8;
-            case OvineBreed.YAKIMA:
-                return 2.6;
-            default:
-                return 0;
-        }
+            OvineBreed.BROWN_SWISS => 2.2,
+            OvineBreed.CHEVIOT => 2.1,
+            OvineBreed.CORRIE => 2.0,
+            OvineBreed.EAST_FRIESIAN => 1.9,
+            OvineBreed.FINNISH_LANDRACE => 1.8,
+            OvineBreed.HAMPSHIRE => 1.7,
+            OvineBreed.HORNED_DORSET => 1.6,
+            OvineBreed.ILE_DE_FRANCE => 1.5,
+            OvineBreed.KERRY_HILL => 1.4,
+            OvineBreed.LINCOLN => 1.3,
+            OvineBreed.MANX_LOAGHTAN => 1.2,
+            OvineBreed.MONTBELIARDE => 1.1,
+            OvineBreed.NORFOLK_HORN => 1.0,
+            OvineBreed.NORWEGIAN_DALE => 3.1,
+            OvineBreed.POLLED_DORSET => 3.0,
+            OvineBreed.SHROPSHIRE => 3.1,
+            OvineBreed.SOUTH_DOWN => 3.5,
+            OvineBreed.TEXEL => 2.2,
+            OvineBreed.WELSH_MOUNTAIN => 5.3,
+            OvineBreed.WELSH_WHITE => 4.2,
+            OvineBreed.WEST_FRIESIAN => 3.8,
+            OvineBreed.YAKIMA => 2.6,
+            _ => 0
+        };
     }
+}
+
+public enum OvineBreed
+{
+    BROWN_SWISS,
+    CHEVIOT,
+    CORRIE,
+    EAST_FRIESIAN,
+    FINNISH_LANDRACE,
+    HAMPSHIRE,
+    HORNED_DORSET,
+    ILE_DE_FRANCE,
+    KERRY_HILL,
+    LINCOLN,
+    MANX_LOAGHTAN,
+    MONTBELIARDE,
+    NORFOLK_HORN,
+    NORWEGIAN_DALE,
+    POLLED_DORSET,
+    SHROPSHIRE,
+    SOUTH_DOWN,
+    TEXEL,
+    WELSH_MOUNTAIN,
+    WELSH_WHITE,
+    WEST_FRIESIAN,
+    YAKIMA
 }

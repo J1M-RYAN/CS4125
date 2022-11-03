@@ -1,3 +1,5 @@
+namespace CS4125.Data;
+
 public class Ram : Ovine, IMale
 {
     private double _hornLength;
