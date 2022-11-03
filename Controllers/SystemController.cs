@@ -8,13 +8,13 @@ public class SystemController
 
     public static void AddSubscriber(IObserver f)
     {
-        System.PaidSubscribers.Add(f);
+        System.Attach(f);
     }
 
 
     public static void RemoveSubscriber(IObserver f)
     {
-        System.PaidSubscribers.Remove(f);
+        System.Detach(f);
     }
 
     public void CreateInvoice()

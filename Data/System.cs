@@ -35,4 +35,6 @@ public class System : IRegister, ISubject
     {
         foreach (var observer in PaidSubscribers) observer.Update();
     }
+
+
 }
