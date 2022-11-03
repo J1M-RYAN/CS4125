@@ -5,15 +5,15 @@ namespace CS4125.Data;
 // Concrete Subject
 public class System : IRegister, ISubject
 {
+    private readonly HashSet<IObserver> PaidSubscribers;
+    private readonly HashSet<User> Users;
+
     public System()
     {
         Users = new HashSet<User>();
         PaidSubscribers = new HashSet<IObserver>();
     }
 
-    public HashSet<User> Users { get; set; }
-
-    public HashSet<IObserver> PaidSubscribers { get; set; }
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
