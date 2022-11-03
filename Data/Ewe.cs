@@ -2,7 +2,7 @@ public class Ewe : Ovine, IFemale
 {
     private bool _isPregnant;
     private double _woolYield;
-    
+
     public Ewe(int id, DateTime dob, OvineBreed _breed, double _woolYield) : base(id, dob, Sex.FEMALE, _breed)
     {
         this._woolYield = _woolYield;

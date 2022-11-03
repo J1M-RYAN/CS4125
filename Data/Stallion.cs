@@ -1,27 +1,29 @@
-namespace CS4125.Data
+namespace CS4125.Data;
+
+public class Stallion : Equine, IMale
 {
-    public class Stallion: Equine, IMale
+    private bool _isCastrated;
+    private double _studPrice;
+
+    public Stallion(int id, DateTime dob, EquineBreed _breed) : base(id, dob, Sex.MALE, _breed)
     {
-        private double _studPrice;
-        private bool _isCastrated;
-        public Stallion(int id, DateTime dob, EquineBreed _breed) : base(id, dob, Sex.MALE, _breed)
-        {
-            _studPrice = 0;
-        }
+        _studPrice = 0;
+    }
 
-        public bool isCastrated { get; set; }
+    public bool isCastrated { get; set; }
 
-        public void Castrate()
-        {
-            _isCastrated = true;
-        }
+    public void Castrate()
+    {
+        _isCastrated = true;
+    }
 
-        public double GetStudPrice()
-        {
-            return _studPrice;
-        }
-        public void SetStudPrice(double studPrice)
-        {
-            _studPrice = studPrice;
-        }
-    }}
+    public double GetStudPrice()
+    {
+        return _studPrice;
+    }
+
+    public void SetStudPrice(double studPrice)
+    {
+        _studPrice = studPrice;
+    }
+}

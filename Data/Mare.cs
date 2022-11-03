@@ -1,4 +1,4 @@
-public class Mare:Equine, IFemale
+public class Mare : Equine, IFemale
 {
     private bool _isPregnant;
     private bool _isSurrogate;
