@@ -8,12 +8,12 @@ public class System : IRegister, ISubject
     public System()
     {
         Users = new HashSet<User>();
-        PaidSubscribers = new HashSet<Farmer>();
+        PaidSubscribers = new HashSet<IObserver>();
     }
 
     public HashSet<User> Users { get; set; }
 
-    public HashSet<Farmer> PaidSubscribers { get; set; }
+    public HashSet<IObserver> PaidSubscribers { get; set; }
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
