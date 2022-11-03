@@ -3,7 +3,7 @@
 @using CS4125.Data
 @using CS4125.Controllers
 @inject NavigationManager UriHelper
-@inject ILocalStorageService localStorage
+@inject ILocalStorageService LocalStorage
 @layout EmptyLayout
 <Header/>
 
@@ -15,21 +15,21 @@
             <p>Please fill in this form to Register.</p>
 
             <div>
-                <input type="text" @bind="@email" @oninput="OnEmailInputEvent" placeholder="Email" name="email" id="email" required>
+                <input type="text" @bind="@_email" @oninput="OnEmailInputEvent" placeholder="Email" name="email" id="email" required>
             </div>
 
             <div>
-                <input type="password" @bind="@password" @oninput="OnPasswordInputEvent" placeholder="Password" name="psw" id="psw" required>
+                <input type="password" @bind="@_password" @oninput="OnPasswordInputEvent" placeholder="Password" name="psw" id="psw" required>
             </div>
 
             <div>
-                <input type="password" @bind="@passwordRepeat" @oninput="OnRepeatPasswordInputEvent" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                <input type="password" @bind="@_passwordRepeat" @oninput="OnRepeatPasswordInputEvent" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
             </div>
             <div>
-                <input type="text" @bind="@firstName" @oninput="OnFirstNamedInputEvent" placeholder="First Name" name="first-name" id="first-name" required>
+                <input type="text" @bind="@_firstName" @oninput="OnFirstNamedInputEvent" placeholder="First Name" name="first-name" id="first-name" required>
             </div>
             <div>
-                <input type="text" @bind="@lastName" @oninput="OnLastNameInputEvent" placeholder="Last Name" name="last-name" id="last-name" required>
+                <input type="text" @bind="@_lastName" @oninput="OnLastNameInputEvent" placeholder="Last Name" name="last-name" id="last-name" required>
             </div>
 
             <div class="button-container">
@@ -44,36 +44,36 @@
 </div>
 
 @code {
-    readonly System system = SystemController._system;
-    string email = "";
-    string password = "";
-    string passwordRepeat = "";
-    string firstName = "";
-    string lastName = "";
+    readonly System _system = SystemController.System;
+    string _email = "";
+    string _password = "";
+    string _passwordRepeat = "";
+    string _firstName = "";
+    string _lastName = "";
 
     void OnEmailInputEvent(ChangeEventArgs changeEvent)
     {
-        email = (string)changeEvent.Value;
+        _email = (string)changeEvent.Value;
     }
 
     void OnPasswordInputEvent(ChangeEventArgs changeEvent)
     {
-        password = (string)changeEvent.Value;
+        _password = (string)changeEvent.Value;
     }
 
     void OnRepeatPasswordInputEvent(ChangeEventArgs changeEvent)
     {
-        passwordRepeat = (string)changeEvent.Value;
+        _passwordRepeat = (string)changeEvent.Value;
     }
 
     void OnFirstNamedInputEvent(ChangeEventArgs changeEvent)
     {
-        firstName = (string)changeEvent.Value;
+        _firstName = (string)changeEvent.Value;
     }
 
     void OnLastNameInputEvent(ChangeEventArgs changeEvent)
     {
-        lastName = (string)changeEvent.Value;
+        _lastName = (string)changeEvent.Value;
     }
 
     void NavigateLogin()
@@ -84,15 +84,15 @@
 
     void RegisterUser()
     {
-        system.RegisterFarmer(email, firstName, lastName, password);
+        _system.RegisterFarmer(_email, _firstName, _lastName, _password);
         SetUsername();
         UriHelper.NavigateTo("/app");
     }
 
     async Task SetUsername()
     {
-        await localStorage.SetItemAsync("name", firstName + " " + lastName);
-        var name = await localStorage.GetItemAsync<string>("name");
+        await LocalStorage.SetItemAsync("name", _firstName + " " + _lastName);
+        var name = await LocalStorage.GetItemAsync<string>("name");
     }
 
 }

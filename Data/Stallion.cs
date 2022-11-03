@@ -5,12 +5,12 @@ public class Stallion : Equine, IMale
     private bool _isCastrated;
     private double _studPrice;
 
-    public Stallion(int id, DateTime dob, EquineBreed _breed) : base(id, dob, Sex.MALE, _breed)
+    public Stallion(int id, DateTime dob, EquineBreed breed) : base(id, dob, Sex.Male, breed)
     {
         _studPrice = 0;
     }
 
-    public bool isCastrated { get; set; }
+    public bool IsCastrated { get; set; }
 
     public void Castrate()
     {

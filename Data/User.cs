@@ -4,14 +4,14 @@ public abstract class User
 {
     public User(string email, string firstName, string lastName, string password)
     {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
+        Email = email;
+        FirstName = firstName;
+        LastName = lastName;
+        Password = password;
     }
 
-    public string email { get; set; }
-    public string firstName { get; set; }
-    public string lastName { get; set; }
-    public string password { get; set; }
+    public string Email { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Password { get; set; }
 }

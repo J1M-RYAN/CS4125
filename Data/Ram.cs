@@ -2,14 +2,16 @@ public class Ram : Ovine, IMale
 {
     private double _hornLength;
     private bool _isCastrated;
+    private double _woolYield;
 
-    public Ram(int id, DateTime dob, OvineBreed _breed) : base(id, dob, Sex.MALE, _breed)
+    public Ram(int id, DateTime dob, OvineBreed breed, double woolYield) : base(id, dob, Sex.Male, breed, woolYield)
     {
+        _woolYield = woolYield;
         _isCastrated = false;
         _hornLength = 0;
     }
 
-    public bool isCastrated { get; set; }
+    public bool IsCastrated { get; set; }
 
     public void Castrate()
     {
@@ -24,5 +26,15 @@ public class Ram : Ovine, IMale
     public void SetHornLength(double hornLength)
     {
         _hornLength = hornLength;
+    }
+
+    public double GetWoolYield()
+    {
+        return _woolYield;
+    }
+
+    public void SetWoolYield(double woolYield)
+    {
+        _woolYield = woolYield;
     }
 }

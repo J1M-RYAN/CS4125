@@ -3,9 +3,9 @@ public class Cow : Bovine, IFemale
     private bool _isPregnant;
     private double _milkProduction;
 
-    public Cow(int id, DateTime dob, BovineBreed _breed, double _milkProduction) : base(id, dob, Sex.FEMALE, _breed)
+    public Cow(int id, DateTime dob, BovineBreed breed, double milkProduction) : base(id, dob, Sex.Female, breed)
     {
-        this._milkProduction = _milkProduction;
+        _milkProduction = milkProduction;
         _isPregnant = false;
     }
 
@@ -19,7 +19,7 @@ public class Cow : Bovine, IFemale
         return _isPregnant;
     }
 
-    public bool isPregnant { get; set; }
+    public bool IsPregnant { get; set; }
 
     public double GetMilkProduction()
     {

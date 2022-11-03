@@ -7,32 +7,32 @@ public class System : IRegister, ISubject
 {
     public System()
     {
-        _users = new HashSet<User>();
-        _paidSubscribers = new HashSet<Farmer>();
+        Users = new HashSet<User>();
+        PaidSubscribers = new HashSet<Farmer>();
     }
 
-    public HashSet<User> _users { get; set; }
+    public HashSet<User> Users { get; set; }
 
-    public HashSet<Farmer> _paidSubscribers { get; set; }
+    public HashSet<Farmer> PaidSubscribers { get; set; }
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
         var f = new Farmer(email, firstName, lastName, password);
-        _users.Add(f);
+        Users.Add(f);
     }
 
     public void Attach(IObserver observer)
     {
-        _paidSubscribers.Add((Farmer)observer);
+        PaidSubscribers.Add((Farmer)observer);
     }
 
     public void Detach(IObserver observer)
     {
-        _paidSubscribers.Remove((Farmer)observer);
+        PaidSubscribers.Remove((Farmer)observer);
     }
 
     public void Notify()
     {
-        foreach (var observer in _paidSubscribers) observer.Update();
+        foreach (var observer in PaidSubscribers) observer.Update();
     }
 }

@@ -4,17 +4,17 @@ namespace CS4125.Controllers;
 
 public class SystemController
 {
-    public static readonly Data.System _system = new();
+    public static readonly Data.System System = new();
 
     public static void AddSubscriber(Farmer f)
     {
-        _system._paidSubscribers.Add(f);
+        System.PaidSubscribers.Add(f);
     }
 
 
     public static void RemoveSubscriber(Farmer f)
     {
-        _system._paidSubscribers.Remove(f);
+        System.PaidSubscribers.Remove(f);
     }
 
     public void CreateInvoice()

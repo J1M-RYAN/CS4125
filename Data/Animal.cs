@@ -31,6 +31,6 @@ public abstract class Animal
 
 public enum Sex
 {
-    MALE,
-    FEMALE
+    Male,
+    Female
 }

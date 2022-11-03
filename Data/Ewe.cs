@@ -3,9 +3,10 @@ public class Ewe : Ovine, IFemale
     private bool _isPregnant;
     private double _woolYield;
 
-    public Ewe(int id, DateTime dob, OvineBreed _breed, double _woolYield) : base(id, dob, Sex.FEMALE, _breed)
+    public Ewe(int id, DateTime dob, OvineBreed breed, double woolYield) : base(id, dob, Sex.Female, breed,
+        woolYield)
     {
-        this._woolYield = _woolYield;
+        _woolYield = woolYield;
         _isPregnant = false;
     }
 
@@ -19,7 +20,7 @@ public class Ewe : Ovine, IFemale
         return _isPregnant;
     }
 
-    public bool isPregnant { get; set; }
+    public bool IsPregnant { get; set; }
 
     public double GetWoolYield()
     {
