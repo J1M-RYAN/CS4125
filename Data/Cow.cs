@@ -21,7 +21,6 @@ public class Cow : Bovine, IFemale
 
     public bool isPregnant { get; set; }
 
-
     public double GetMilkProduction()
     {
         return _milkProduction;
