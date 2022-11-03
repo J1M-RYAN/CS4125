@@ -2,7 +2,8 @@ using CS4125.Controllers;
 
 namespace CS4125.Data;
 
-public class System : IRegister
+// Concrete Subject
+public class System : IRegister, ISubject
 {
     public System()
     {
@@ -18,5 +19,23 @@ public class System : IRegister
     {
         var f = new Farmer(email, firstName, lastName, password);
         _users.Add(f);
+    }
+
+    public void Attach(IObserver observer)
+    {
+        _paidSubscribers.Add((Farmer)observer);
+    }
+
+    public void Detach(IObserver observer)
+    {
+        _paidSubscribers.Remove((Farmer)observer);
+    }
+
+    public void Notify()
+    {
+        foreach (var observer in _paidSubscribers)
+        {
+            observer.Update();
+        }
     }
 }
