@@ -17,7 +17,7 @@
     gap: 1rem;
 }
 
-.card-holder{
+.card-holder {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -40,6 +40,7 @@
     font-weight: 500;
     font-size: 1.3rem;
 }
+
 .card-content {
     font-size: 2rem;
     font-weight: 500;

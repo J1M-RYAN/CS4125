@@ -1,6 +1,5 @@
 
-
-.logo{
+.logo {
     height: 5rem;
     width: 5rem;
 }
@@ -17,6 +16,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .landing-btn {
     background: #04DDB2;
     color: white;
@@ -37,7 +37,7 @@
     margin-bottom: 2rem;
 }
 
-.heroLeft{
+.heroLeft {
     align-items: center;
     justify-content: center;
 }
@@ -47,7 +47,7 @@
     height: 1rem;
 }
 
-.cardFeature{
+.cardFeature {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -65,16 +65,16 @@
     max-width: 25rem;
 }
 
-.buttonFooter{
+.buttonFooter {
     border: none;
     border-radius: 3rem;
     padding: 1rem 5rem;
-    background:#F1FCFA ;
+    background: #F1FCFA;
     color: #04DDB2;
     font-weight: 500;
 }
 
-.cardFooter{
+.cardFooter {
     padding: 1rem;
     padding-bottom: 0;
 }
@@ -84,7 +84,7 @@
     font-size: 2rem;
 }
 
-.cardFeatures{
+.cardFeatures {
     margin-bottom: 1rem;
     color: #666;
     font-size: 1.2rem;
@@ -96,13 +96,13 @@
     font-weight: 400;
 }
 
-.pricing-cards{
+.pricing-cards {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.upgradeButton{
+.upgradeButton {
     color: white;
     background: #04DDB2;
 }

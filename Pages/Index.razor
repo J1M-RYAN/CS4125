@@ -1,4 +1,6 @@
 ﻿@page "/app"
+@using Blazored.LocalStorage
+@inject ILocalStorageService localStorage
 
 <PageTitle>Overview</PageTitle>
 
@@ -7,7 +9,7 @@
         <h1>Overview</h1>
         Welcome to Farm Ledger.
         <div class="account">
-            <div>John Smith</div>
+            <div>@fullName</div>
             <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
         </div>
     </div>
@@ -28,6 +30,21 @@
             <div class="card-title">Next Payment Due</div>
             <div class="card-content">1/10/22</div>
         </div>
-        
+
     </div>
 </div>
+
+@code {
+
+    string fullName = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            fullName = await localStorage.GetItemAsync<string>("name");
+            StateHasChanged();
+        }
+    }
+
+}

@@ -1,4 +1,4 @@
-﻿@inject NavigationManager UriHelper 
+﻿@inject NavigationManager UriHelper
 
 <div class="header">
     <img @onclick="@NavigateHome" class="logo" src="logo.png" alt="logo"/>
@@ -6,8 +6,10 @@
 </div>
 
 @code {
+
     void NavigateHome()
     {
         UriHelper.NavigateTo("/");
     }
+
 }

@@ -5,34 +5,63 @@
 
 <PageTitle>Login</PageTitle>
 <div class="card-container">
-<div class="login-form card">
-  <form action="action_page.php">
-    <div class="container-fluid">
-      <div class="title">Login</div>
-      <p>Please fill in this form to login.</p>
+    <div class="login-form card">
+        <div class="container-fluid">
+            <div class="title">Login</div>
+            <p>Please fill in this form to login.</p>
 
-      <div>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-      </div>
-    
-      <div>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-      </div>
-    
-      <div class="button-container">
-        <button type="submit" class="login-btn">Login</button>
-      </div>  
+            <div>
+                <input type="text" @bind="@_emailValue" @oninput="OnEmailInputEvent" placeholder="Enter Email" name="email" id="email" required>
+            </div>
+
+            <div>
+                <input type="password" @bind="@_passwordValue" @oninput="OnPasswordInputEvent" placeholder="Enter Password" name="psw" id="psw" required>
+            </div>
+
+            <div class="button-container">
+                <button @onclick="@NavigateApp" class="login-btn">Login</button>
+            </div>
+        </div>
+
+        <div class="container signin">
+            <p>Don't have an account? <a href="" @onclick:preventDefault @onclick="@NavigateSignup">Sign up</a>.</p>
+        </div>
     </div>
- 
-    <div class="container signin">
-      <p>Don't have an account? <a href="" @onclick="@NavigateSignup">Sign up</a>.</p>
-    </div>
-  </form>
 </div>
-</div>
+
 @code {
-  void NavigateSignup()
-  {
-    UriHelper.NavigateTo("/signup");
-  }
+    private string _emailValue = "";
+    private string _passwordValue = "";
+
+    private void OnEmailInputEvent(ChangeEventArgs changeEvent)
+    {
+        _emailValue = (string)changeEvent.Value;
+    }
+
+    private void OnPasswordInputEvent(ChangeEventArgs changeEvent)
+    {
+        _passwordValue = (string)changeEvent.Value;
+    }
+
+    void NavigateSignup()
+    {
+        UriHelper.NavigateTo("/signup");
+    }
+
+    void NavigateApp()
+    {
+        Console.WriteLine(_emailValue);
+        Console.WriteLine(_passwordValue);
+
+        if (_emailValue.Length <= 1)
+        {
+            return;
+        }
+        if (_passwordValue.Length <= 1)
+        {
+            return;
+        }
+        UriHelper.NavigateTo("/app");
+    }
+
 }
