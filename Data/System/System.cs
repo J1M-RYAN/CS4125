@@ -1,6 +1,8 @@
 using CS4125.Controllers;
+using CS4125.Data.Finance;
+using CS4125.Data.UserData;
 
-namespace CS4125.Data;
+namespace CS4125.Data.System;
 
 // Concrete Subject
 public class System : IRegister, ISubject
