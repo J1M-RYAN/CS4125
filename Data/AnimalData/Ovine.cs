@@ -1,4 +1,4 @@
-namespace CS4125.Data.Animal;
+namespace CS4125.Data.AnimalData;
 
 public abstract class Ovine : Animal
 {
@@ -10,6 +10,8 @@ public abstract class Ovine : Animal
         this._breed = _breed;
         _woolYield = woolYield;
     }
+
+    public OvineBreed Breed => _breed;
 
 
     public double EstimatedWoolYield()

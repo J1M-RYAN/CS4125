@@ -1,4 +1,4 @@
-namespace CS4125.Data.Animal;
+namespace CS4125.Data.AnimalData;
 
 public class Stallion : Equine, IMale
 {

@@ -38,5 +38,10 @@ public class System : IRegister, ISubject
         foreach (var observer in PaidSubscribers) observer.Update();
     }
 
+    public HashSet<User> GetUsers()
+    {
+        return Users;
+    }
+
 
 }
