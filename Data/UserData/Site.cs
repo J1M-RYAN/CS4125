@@ -4,21 +4,21 @@ namespace CS4125.Data.UserData;
 
 public class Site : ISite
 {
-    private readonly HashSet<AnimalData.Animal> _animals;
+    private readonly HashSet<Animal> _animals;
     private string _name;
 
     public Site(string name, Address address)
     {
         _name = name;
-        _animals = new HashSet<AnimalData.Animal>();
+        _animals = new HashSet<Animal>();
     }
 
-    public void AddAnimal(AnimalData.Animal animal)
+    public void AddAnimal(Animal animal)
     {
         _animals.Add(animal);
     }
 
-    public void RemoveAnimal(AnimalData.Animal animal)
+    public void RemoveAnimal(Animal animal)
     {
         _animals.Remove(animal);
     }
@@ -29,7 +29,7 @@ public class Site : ISite
         AddAnimal(animal);
     }
 
-    public HashSet<AnimalData.Animal> GetAnimals()
+    public HashSet<Animal> GetAnimals()
     {
         return _animals;
     }

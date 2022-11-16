@@ -1,24 +1,24 @@
 using CS4125.Data.AnimalData;
 using CS4125.Data.UserData;
+
 namespace CS4125.Data.Finance;
+
 public abstract class InvoiceBase
 {
+    public const double BASE_SITE_PRICE = 1.2;
+
+    private readonly double BASE_BOVINE_PRICE = 0.7;
+    private readonly double BASE_EQUINE_PRICE = 1;
+    private readonly double BASE_OVINE_PRICE = 0.3;
     protected List<Animal> animals;
     protected List<Site> sites;
 
     public abstract double CalculateTotalInvoicePrice();
 
-    private double BASE_BOVINE_PRICE = 0.7;
-    private double BASE_OVINE_PRICE = 0.3;
-    private double BASE_EQUINE_PRICE = 1;
-
-    public double BASE_SITE_PRICE = 1.2;
-
     public double CalculateTotalAnimalPrice()
     {
         double total = 0;
-        foreach (Animal animal in animals)
-        {
+        foreach (var animal in animals)
             switch (animal)
             {
                 case Bovine bovine:
@@ -32,7 +32,6 @@ public abstract class InvoiceBase
                     total += getEquinePrice(equine);
                     break;
             }
-        }
 
         return total;
     }
@@ -40,78 +39,43 @@ public abstract class InvoiceBase
     public double CalculateTotalSitePrice()
     {
         double total = 0;
-        foreach (Site site in sites)
-        {
-            total += BASE_SITE_PRICE;
-        }
+        foreach (var site in sites) total += BASE_SITE_PRICE;
+
         return total;
     }
 
     private double getEquinePrice(Equine equine)
     {
-        double price = BASE_EQUINE_PRICE;
+        var price = BASE_EQUINE_PRICE;
 
         price = adjustPriceBasedOnSex(equine, price);
 
-        switch (equine.Breed)
+        price += equine.Breed switch
         {
-            case EquineBreed.ARABIAN:
-                price += 0.1;
-                break;
-            case EquineBreed.APPALOOSA:
-                price += 0.2;
-                break;
-            case EquineBreed.BERKSHIRE:
-                price += 0.3;
-                break;
-            case EquineBreed.BURGUNDY:
-
-                price += 0.4;
-                break;
-            case EquineBreed.CHESTNUT:
-                price += 0.5;
-                break;
-            case EquineBreed.CLEVELAND_BAY:
-                price += 0.6;
-                break;
-            case EquineBreed.CREMELLO:
-                price += 0.7;
-                break;
-            case EquineBreed.DAPPLE_GREY:
-                price += 0.8;
-                break;
-            case EquineBreed.DUN:
-                price += 0.9;
-                break;
-            case EquineBreed.GRAY:
-                price += 1;
-                break;
-            case EquineBreed.GRULLA:
-                price += 1.1;
-                break;
-            case EquineBreed.HAFLINGER:
-                price += 1.2;
-                break;
-            case EquineBreed.HANOVERIAN:
-                price += 1.3;
-                break;
-            case EquineBreed.JERSEY:
-                price += 1.4;
-                break;
-            case EquineBreed.MUSTANG:
-                price += 1.5;
-                break;
-            case EquineBreed.MORGAN:
-                price += 1.6;
-                break;
-        }
+            EquineBreed.ARABIAN => 0.1,
+            EquineBreed.APPALOOSA => 0.2,
+            EquineBreed.BERKSHIRE => 0.3,
+            EquineBreed.BURGUNDY => 0.4,
+            EquineBreed.CHESTNUT => 0.5,
+            EquineBreed.CLEVELAND_BAY => 0.6,
+            EquineBreed.CREMELLO => 0.7,
+            EquineBreed.DAPPLE_GREY => 0.8,
+            EquineBreed.DUN => 0.9,
+            EquineBreed.GRAY => 1,
+            EquineBreed.GRULLA => 1.1,
+            EquineBreed.HAFLINGER => 1.2,
+            EquineBreed.HANOVERIAN => 1.3,
+            EquineBreed.JERSEY => 1.4,
+            EquineBreed.MUSTANG => 1.5,
+            EquineBreed.MORGAN => 1.6,
+            _ => 0
+        };
         return price;
-
     }
 
     private double getOvinePrice(Ovine ovine)
     {
-        double price = BASE_OVINE_PRICE;
+        var price = BASE_OVINE_PRICE;
 
         price = adjustPriceBasedOnSex(ovine, price);
 
@@ -199,6 +163,7 @@ public abstract class InvoiceBase
                 price += 0.2;
                 break;
         }
+
         return price;
     }
 
@@ -206,7 +171,7 @@ public abstract class InvoiceBase
     {
         // Calculate price for bovine by sex, bovine_base_price, and breed
 
-        double price = BASE_BOVINE_PRICE;
+        var price = BASE_BOVINE_PRICE;
 
         price = adjustPriceBasedOnSex(bovine, price);
 
@@ -278,21 +243,16 @@ public abstract class InvoiceBase
         }
 
         return price;
-
     }
 
 
     public double adjustPriceBasedOnSex(Animal animal, double price)
     {
         if (animal.getSex() == Sex.Male)
-        {
             price *= 1.1;
-        }
         else
-        {
             price *= 0.9;
-        }
+
         return price;
     }
-
 }

@@ -2,21 +2,20 @@ namespace CS4125.Data.AnimalData;
 
 public abstract class Ovine : Animal
 {
-    private readonly OvineBreed _breed;
     private double _woolYield;
 
     public Ovine(int id, DateTime dob, Sex sex, OvineBreed _breed, double woolYield) : base(id, dob, sex)
     {
-        this._breed = _breed;
+        Breed = _breed;
         _woolYield = woolYield;
     }
 
-    public OvineBreed Breed => _breed;
+    public OvineBreed Breed { get; }
 
 
     public double EstimatedWoolYield()
     {
-        return _breed switch
+        return Breed switch
         {
             OvineBreed.BROWN_SWISS => 2.2,
             OvineBreed.CHEVIOT => 2.1,

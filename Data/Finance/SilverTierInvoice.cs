@@ -1,18 +1,21 @@
-namespace CS4125.Data.Finance;
 using CS4125.Data.UserData;
 
+namespace CS4125.Data.Finance;
 
 public class SilverTierInvoice : InvoiceBase
 {
-    double SilverTierCharge = 0.15;
-    public override double CalculateTotalInvoicePrice()
-    {
-        return Math.Max(CalculateTotalAnimalPrice() + CalculateTotalSitePrice() - BASE_SITE_PRICE + SilverTierCharge, 0);
-    }
+    private const double SilverTierCharge = 0.15;
+
     public SilverTierInvoice(Farmer farmer)
     {
-        this.animals = farmer.Animals();
+        animals = farmer.Animals();
 
-        this.sites = farmer.Sites;
+        sites = farmer.Sites;
+    }
+
+    public override double CalculateTotalInvoicePrice()
+    {
+        return Math.Max(CalculateTotalAnimalPrice() + CalculateTotalSitePrice() - BASE_SITE_PRICE + SilverTierCharge,
+            0);
     }
 }

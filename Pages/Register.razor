@@ -1,8 +1,7 @@
 @page "/signup"
 @using Blazored.LocalStorage
-@using CS4125.Data
-@using CS4125.Controllers
 @using CS4125.Data.System
+@using CS4125.Controllers
 @inject NavigationManager UriHelper
 @inject ILocalStorageService LocalStorage
 @layout EmptyLayout
@@ -54,27 +53,27 @@
 
     void OnEmailInputEvent(ChangeEventArgs changeEvent)
     {
-        _email = (string)changeEvent.Value;
+        _email = (string) changeEvent.Value;
     }
 
     void OnPasswordInputEvent(ChangeEventArgs changeEvent)
     {
-        _password = (string)changeEvent.Value;
+        _password = (string) changeEvent.Value;
     }
 
     void OnRepeatPasswordInputEvent(ChangeEventArgs changeEvent)
     {
-        _passwordRepeat = (string)changeEvent.Value;
+        _passwordRepeat = (string) changeEvent.Value;
     }
 
     void OnFirstNamedInputEvent(ChangeEventArgs changeEvent)
     {
-        _firstName = (string)changeEvent.Value;
+        _firstName = (string) changeEvent.Value;
     }
 
     void OnLastNameInputEvent(ChangeEventArgs changeEvent)
     {
-        _lastName = (string)changeEvent.Value;
+        _lastName = (string) changeEvent.Value;
     }
 
     void NavigateLogin()

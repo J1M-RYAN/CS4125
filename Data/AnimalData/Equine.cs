@@ -2,14 +2,12 @@ namespace CS4125.Data.AnimalData;
 
 public abstract class Equine : Animal
 {
-    private EquineBreed _breed;
-
-    public EquineBreed Breed => _breed;
-
     public Equine(int id, DateTime dob, Sex sex, EquineBreed _breed) : base(id, dob, sex)
     {
-        this._breed = _breed;
+        Breed = _breed;
     }
+
+    public EquineBreed Breed { get; }
 }
 
 public enum EquineBreed
@@ -29,5 +27,5 @@ public enum EquineBreed
     HANOVERIAN,
     JERSEY,
     MUSTANG,
-    MORGAN,
+    MORGAN
 }

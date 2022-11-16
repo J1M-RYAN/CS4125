@@ -1,7 +1,9 @@
 namespace CS4125.Data.Finance;
+
 public class GoldTierInvoice : InvoiceDecorator
 {
-    double GoldTierCharge = 0.2;
+    private const double GoldTierCharge = 0.2;
+
     public GoldTierInvoice(InvoiceBase invoice)
         : base(invoice)
     {

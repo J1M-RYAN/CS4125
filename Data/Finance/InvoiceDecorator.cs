@@ -1,6 +1,5 @@
 namespace CS4125.Data.Finance;
 
-
 public class InvoiceDecorator : InvoiceBase
 {
     protected InvoiceBase invoice;

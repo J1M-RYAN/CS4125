@@ -3,10 +3,10 @@ namespace CS4125.Data.AnimalData;
 public abstract class Animal
 {
     private readonly DateTime _dateOfBirth;
+    private readonly Sex _sex;
     private int _id;
 
     private bool _isVacinated;
-    private Sex _sex;
 
     public Animal(int id, DateTime dob, Sex sex)
     {

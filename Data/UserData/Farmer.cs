@@ -1,22 +1,23 @@
-﻿using CS4125.Data.Finance;
-using CS4125.Data.AnimalData;
+﻿using CS4125.Data.AnimalData;
+using CS4125.Data.Finance;
 
 namespace CS4125.Data.UserData;
 
 // Concrete Observer
 public class Farmer : User, IObserver
 {
-    public Tier tier;
     private readonly HashSet<Invoice> _invoices;
-    private List<Site> _sites;
+    public Tier tier;
 
     public Farmer(string email, string firstName, string lastName, string password) : base(email, firstName, lastName,
         password)
     {
         _invoices = new HashSet<Invoice>();
-        _sites = new List<Site>();
+        Sites = new List<Site>();
         tier = Tier.Bronze;
     }
+
+    public List<Site> Sites { get; }
 
     public void Update()
     {
@@ -41,17 +42,9 @@ public class Farmer : User, IObserver
     public List<Animal> Animals()
     {
         var animals = new List<Animal>();
-        foreach (var site in _sites)
-        {
-            animals.AddRange(site.GetAnimals());
-        }
+        foreach (var site in Sites) animals.AddRange(site.GetAnimals());
 
         return animals;
-    }
-
-    public List<Site> Sites
-    {
-        get => _sites;
     }
 }
 

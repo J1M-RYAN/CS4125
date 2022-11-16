@@ -25,12 +25,12 @@ public class System : IRegister, ISubject
 
     public void Attach(IObserver observer)
     {
-        PaidSubscribers.Add((Farmer)observer);
+        PaidSubscribers.Add((Farmer) observer);
     }
 
     public void Detach(IObserver observer)
     {
-        PaidSubscribers.Remove((Farmer)observer);
+        PaidSubscribers.Remove((Farmer) observer);
     }
 
     public void Notify()
@@ -42,6 +42,4 @@ public class System : IRegister, ISubject
     {
         return Users;
     }
-
-
 }

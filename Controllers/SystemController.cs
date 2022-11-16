@@ -1,5 +1,4 @@
-﻿using CS4125.Data;
-using CS4125.Data.Finance;
+﻿using CS4125.Data.Finance;
 
 namespace CS4125.Controllers;
 
