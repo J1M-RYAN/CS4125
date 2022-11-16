@@ -1,4 +1,4 @@
-namespace CS4125.Data;
+namespace CS4125.Data.Finance;
 
 public interface IObserver
 {

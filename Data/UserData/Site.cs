@@ -1,22 +1,24 @@
-namespace CS4125.Data;
+using CS4125.Data.Animal;
+
+namespace CS4125.Data.UserData;
 
 public class Site : ISite
 {
-    private readonly HashSet<Animal> _animals;
+    private readonly HashSet<Animal.Animal> _animals;
     private string _name;
 
     public Site(string name, Address address)
     {
         _name = name;
-        _animals = new HashSet<Animal>();
+        _animals = new HashSet<Animal.Animal>();
     }
 
-    public void AddAnimal(Animal animal)
+    public void AddAnimal(Animal.Animal animal)
     {
         _animals.Add(animal);
     }
 
-    public void RemoveAnimal(Animal animal)
+    public void RemoveAnimal(Animal.Animal animal)
     {
         _animals.Remove(animal);
     }

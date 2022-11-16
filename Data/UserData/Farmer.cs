@@ -1,4 +1,6 @@
-﻿namespace CS4125.Data;
+﻿using CS4125.Data.Finance;
+
+namespace CS4125.Data.UserData;
 
 // Concrete Observer
 public class Farmer : User, IObserver
