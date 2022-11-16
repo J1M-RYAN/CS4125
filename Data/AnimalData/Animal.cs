@@ -1,4 +1,4 @@
-namespace CS4125.Data.Animal;
+namespace CS4125.Data.AnimalData;
 
 public abstract class Animal
 {
@@ -28,6 +28,11 @@ public abstract class Animal
     public DateTime GetDateOfBirth()
     {
         return _dateOfBirth;
+    }
+
+    public Sex getSex()
+    {
+        return _sex;
     }
 }
 

@@ -1,8 +1,10 @@
-namespace CS4125.Data.Animal;
+namespace CS4125.Data.AnimalData;
 
 public abstract class Bovine : Animal
 {
     private BovineBreed _breed;
+
+    public BovineBreed Breed => _breed;
 
     public Bovine(int id, DateTime dob, Sex sex, BovineBreed _breed) : base(id, dob, sex)
     {
