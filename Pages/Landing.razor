@@ -1,7 +1,7 @@
 @page "/"
 @inject NavigationManager UriHelper
 @layout EmptyLayout
-<Header/>
+<Header />
 <div class="hero">
     <div class="heroLeft">
         <div class="title">Farm Ledger</div>
@@ -11,76 +11,69 @@
             <button class="landing-btn" @onclick="@NavigateSignup">Signup</button>
         </div>
     </div>
-    <img class="logoLarge" src="logo.png" alt="logo"/>
+    <img class="logoLarge" src="logo.png" alt="logo" />
 
 </div>
 
 <div class="pricing-cards">
     <div class="card">
-        <div class="cardTitle">Discovery</div>
-        <div class="cardPrice">Free</div>
+        <div class="cardTitle">Bronze</div>
+        <div class="cardPrice">€5/month Base</div>
         <div class="cardFeatures">
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">1 site</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">25 animals</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
+                <img class="tick" src="tick.png" alt="check mark" />
                 <div class="cardFeatureTitle">Vaccine tracking</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
+                <img class="tick" src="tick.png" alt="check mark" />
                 <div class="cardFeatureTitle">Weight tracking</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
+                <img class="tick" src="tick.png" alt="check mark" />
                 <div class="cardFeatureTitle">Feed estimation</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
+                <img class="tick" src="tick.png" alt="check mark" />
                 <div class="cardFeatureTitle">Wool estimation</div>
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter" @onclick="@NavigateSignup">Signup for free</button>
+            <button class="buttonFooter upgradeButtonBronze" @onclick="@NavigateLogin">Upgrade</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="cardTitle">Silver</div>
+        <div class="cardPrice">€15/month Base</div>
+        <div class="cardFeatures">
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark" />
+                <div class="cardFeatureTitle">Everything from Bronze Tier</div>
+            </div>
+            <div class="cardFeature">
+                <img class="tick" src="tick.png" alt="check mark" />
+                <div class="cardFeatureTitle">One Site free</div>
+            </div>
+        </div>
+        <div class="cardFooter">
+            <button class="buttonFooter upgradeButtonSilver" @onclick="@NavigateLogin">Upgrade</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="cardTitle">Premium</div>
-        <div class="cardPrice">€25/month</div>
+        <div class="cardTitle">Gold</div>
+        <div class="cardPrice">€25/month Base</div>
         <div class="cardFeatures">
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Unlimited sites</div>
+                <img class="tick" src="tick.png" alt="check mark" />
+                <div class="cardFeatureTitle">Everything from Silver Tier</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Unlimited animals</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Vaccine tracking</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Weight tracking</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Feed estimation</div>
-            </div>
-            <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark"/>
-                <div class="cardFeatureTitle">Wool estimation</div>
+                <img class="tick" src="tick.png" alt="check mark" />
+                <div class="cardFeatureTitle">10% off total invoice</div>
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter upgradeButton" @onclick="@NavigateLogin">Upgrade</button>
+            <button class="buttonFooter upgradeButtonGold" @onclick="@NavigateLogin">Upgrade</button>
         </div>
     </div>
 
