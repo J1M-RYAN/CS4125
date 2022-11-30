@@ -1,21 +1,22 @@
 @page "/"
 @inject NavigationManager UriHelper
 @layout EmptyLayout
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
 
-<Header />
+<Header/>
 <div class="hero">
     <div class="heroLeft">
         <div class="title">Farm Ledger</div>
         <div class="subtitle">Track your farm activity</div>
         <div>
-            <a class="nav-link text-dark" ssp-area="Identity" href="/login"><button class="landing-btn">Login</button></a>
-            <a class="nav-link text-dark" ssp-area="Identity" href="/register"><button class="landing-btn">Signup</button></a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="/login">
+                <button class="landing-btn">Login</button>
+            </a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="/register">
+                <button class="landing-btn">Signup</button>
+            </a>
         </div>
     </div>
-    <img class="logoLarge" src="logo.png" alt="logo" />
+    <img class="logoLarge" src="logo.png" alt="logo"/>
 
 </div>
 
@@ -25,24 +26,26 @@
         <div class="cardPrice">€5/month Base</div>
         <div class="cardFeatures">
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Vaccine tracking</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Weight tracking</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Feed estimation</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Wool estimation</div>
             </div>
         </div>
         <div class="cardFooter">
-<a class="nav-link text-dark" ssp-area="Identity" href="/register"><button class="buttonFooter upgradeButtonBronze">Upgrade</button></a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="/register">
+                <button class="buttonFooter upgradeButtonBronze">Upgrade</button>
+            </a>
         </div>
     </div>
     <div class="card">
@@ -50,16 +53,18 @@
         <div class="cardPrice">€15/month Base</div>
         <div class="cardFeatures">
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Everything from Bronze Tier</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">One Site free</div>
             </div>
         </div>
         <div class="cardFooter">
-<a class="nav-link text-dark" ssp-area="Identity" href="/register"><button class="buttonFooter upgradeButtonSilver">Upgrade</button></a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="/register">
+                <button class="buttonFooter upgradeButtonSilver">Upgrade</button>
+            </a>
 
         </div>
     </div>
@@ -69,16 +74,18 @@
         <div class="cardPrice">€25/month Base</div>
         <div class="cardFeatures">
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">Everything from Silver Tier</div>
             </div>
             <div class="cardFeature">
-                <img class="tick" src="tick.png" alt="check mark" />
+                <img class="tick" src="tick.png" alt="check mark"/>
                 <div class="cardFeatureTitle">10% off total invoice</div>
             </div>
         </div>
         <div class="cardFooter">
-<a class="nav-link text-dark" ssp-area="Identity" href="register"><button class="buttonFooter upgradeButtonGold">Upgrade</button></a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="register">
+                <button class="buttonFooter upgradeButtonGold">Upgrade</button>
+            </a>
         </div>
     </div>
 
