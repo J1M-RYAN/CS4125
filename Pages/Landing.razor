@@ -1,14 +1,20 @@
 @page "/"
 @inject NavigationManager UriHelper
 @layout EmptyLayout
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <Header />
+<a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Register">Register</a>
 <div class="hero">
     <div class="heroLeft">
         <div class="title">Farm Ledger</div>
         <div class="subtitle">Track your farm activity</div>
         <div>
-            <button class="landing-btn" @onclick="@NavigateLogin">Login</button>
-            <button class="landing-btn" @onclick="@NavigateSignup">Signup</button>
+            <a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Login"><button class="landing-btn">Login</button></a>
+            <a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Register"><button class="landing-btn">Signup</button></a>
         </div>
     </div>
     <img class="logoLarge" src="logo.png" alt="logo" />
@@ -38,7 +44,7 @@
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter upgradeButtonBronze" @onclick="@NavigateLogin">Upgrade</button>
+<a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Register"><button class="buttonFooter upgradeBronzeGold">Upgrade</button></a>
         </div>
     </div>
     <div class="card">
@@ -55,7 +61,8 @@
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter upgradeButtonSilver" @onclick="@NavigateLogin">Upgrade</button>
+<a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Register"><button class="buttonFooter upgradeSilverGold">Upgrade</button></a>
+
         </div>
     </div>
 
@@ -73,23 +80,8 @@
             </div>
         </div>
         <div class="cardFooter">
-            <button class="buttonFooter upgradeButtonGold" @onclick="@NavigateLogin">Upgrade</button>
+<a class="nav-link text-dark" ssp-area="Identity" href="Identity/Account/Register"><button class="buttonFooter upgradeButtonGold">Upgrade</button></a>
         </div>
     </div>
 
 </div>
-
-
-@code {
-
-    void NavigateLogin()
-    {
-        UriHelper.NavigateTo("/login");
-    }
-
-    void NavigateSignup()
-    {
-        UriHelper.NavigateTo("/signup");
-    }
-
-}
