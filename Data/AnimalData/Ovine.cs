@@ -4,9 +4,9 @@ public abstract class Ovine : Animal
 {
     private double _woolYield;
 
-    public Ovine(int id, DateTime dob, Sex sex, OvineBreed _breed, double woolYield) : base(id, dob, sex)
+    public Ovine(int id, DateTime dob, Sex sex, OvineBreed breed, double woolYield) : base(id, dob, sex)
     {
-        Breed = _breed;
+        Breed = breed;
         _woolYield = woolYield;
     }
 
@@ -17,28 +17,28 @@ public abstract class Ovine : Animal
     {
         return Breed switch
         {
-            OvineBreed.BROWN_SWISS => 2.2,
-            OvineBreed.CHEVIOT => 2.1,
-            OvineBreed.CORRIE => 2.0,
-            OvineBreed.EAST_FRIESIAN => 1.9,
-            OvineBreed.FINNISH_LANDRACE => 1.8,
-            OvineBreed.HAMPSHIRE => 1.7,
-            OvineBreed.HORNED_DORSET => 1.6,
-            OvineBreed.ILE_DE_FRANCE => 1.5,
-            OvineBreed.KERRY_HILL => 1.4,
-            OvineBreed.LINCOLN => 1.3,
-            OvineBreed.MANX_LOAGHTAN => 1.2,
-            OvineBreed.MONTBELIARDE => 1.1,
-            OvineBreed.NORFOLK_HORN => 1.0,
-            OvineBreed.NORWEGIAN_DALE => 3.1,
-            OvineBreed.POLLED_DORSET => 3.0,
-            OvineBreed.SHROPSHIRE => 3.1,
-            OvineBreed.SOUTH_DOWN => 3.5,
-            OvineBreed.TEXEL => 2.2,
-            OvineBreed.WELSH_MOUNTAIN => 5.3,
-            OvineBreed.WELSH_WHITE => 4.2,
-            OvineBreed.WEST_FRIESIAN => 3.8,
-            OvineBreed.YAKIMA => 2.6,
+            OvineBreed.BrownSwiss => 2.2,
+            OvineBreed.Cheviot => 2.1,
+            OvineBreed.Corrie => 2.0,
+            OvineBreed.EastFriesian => 1.9,
+            OvineBreed.FinnishLandrace => 1.8,
+            OvineBreed.Hampshire => 1.7,
+            OvineBreed.HornedDorset => 1.6,
+            OvineBreed.IleDeFrance => 1.5,
+            OvineBreed.KerryHill => 1.4,
+            OvineBreed.Lincoln => 1.3,
+            OvineBreed.ManxLoaghtan => 1.2,
+            OvineBreed.Montbeliarde => 1.1,
+            OvineBreed.NorfolkHorn => 1.0,
+            OvineBreed.NorwegianDale => 3.1,
+            OvineBreed.PolledDorset => 3.0,
+            OvineBreed.Shropshire => 3.1,
+            OvineBreed.SouthDown => 3.5,
+            OvineBreed.Texel => 2.2,
+            OvineBreed.WelshMountain => 5.3,
+            OvineBreed.WelshWhite => 4.2,
+            OvineBreed.WestFriesian => 3.8,
+            OvineBreed.Yakima => 2.6,
             _ => 0
         };
     }
@@ -46,26 +46,26 @@ public abstract class Ovine : Animal
 
 public enum OvineBreed
 {
-    BROWN_SWISS,
-    CHEVIOT,
-    CORRIE,
-    EAST_FRIESIAN,
-    FINNISH_LANDRACE,
-    HAMPSHIRE,
-    HORNED_DORSET,
-    ILE_DE_FRANCE,
-    KERRY_HILL,
-    LINCOLN,
-    MANX_LOAGHTAN,
-    MONTBELIARDE,
-    NORFOLK_HORN,
-    NORWEGIAN_DALE,
-    POLLED_DORSET,
-    SHROPSHIRE,
-    SOUTH_DOWN,
-    TEXEL,
-    WELSH_MOUNTAIN,
-    WELSH_WHITE,
-    WEST_FRIESIAN,
-    YAKIMA
+    BrownSwiss,
+    Cheviot,
+    Corrie,
+    EastFriesian,
+    FinnishLandrace,
+    Hampshire,
+    HornedDorset,
+    IleDeFrance,
+    KerryHill,
+    Lincoln,
+    ManxLoaghtan,
+    Montbeliarde,
+    NorfolkHorn,
+    NorwegianDale,
+    PolledDorset,
+    Shropshire,
+    SouthDown,
+    Texel,
+    WelshMountain,
+    WelshWhite,
+    WestFriesian,
+    Yakima
 }

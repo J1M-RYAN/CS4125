@@ -7,14 +7,14 @@ namespace CS4125.Data.UserData;
 public class Farmer : User, IObserver
 {
     private readonly HashSet<Invoice> _invoices;
-    public Tier tier;
+    public Tier Tier;
 
     public Farmer(string email, string firstName, string lastName, string password) : base(email, firstName, lastName,
         password)
     {
         _invoices = new HashSet<Invoice>();
         Sites = new List<Site>();
-        tier = Tier.Bronze;
+        Tier = Tier.Bronze;
     }
 
     public List<Site> Sites { get; }

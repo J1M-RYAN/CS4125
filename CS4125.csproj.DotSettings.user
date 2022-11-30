@@ -1,0 +1,39 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CCS4125_002ESTYLES_002ECSS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CCSS_005CSITE_002ECSS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CJS_005CSITE_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CLIB_005CBOOTSTRAP_005CDIST_005CCSS_005CBOOTSTRAP_002ECSS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CLIB_005CBOOTSTRAP_005CDIST_005CJS_005CBOOTSTRAP_002EBUNDLE_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_002DVALIDATION_002DUNOBTRUSIVE_005CJQUERY_002EVALIDATE_002EUNOBTRUSIVE_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_002DVALIDATION_005CDIST_005CJQUERY_002EVALIDATE_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_005CDIST_005CJQUERY_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CLOGIN/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CREGISTER/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005C_005FFRAMEWORK_005CBLAZOR_002ESERVER_002EJS/@EntryIndexedValue"></s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=SITE_002ECSS/@EntryIndexedValue">site.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CCS4125_002ESTYLES_002ECSS/@EntryIndexedValue">wwwroot\CS4125.styles.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CCSS/@EntryIndexedValue">wwwroot\Identity\css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CCSS_005CSITE_002ECSS/@EntryIndexedValue">wwwroot\Identity\css\site.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CJS_005CSITE_002EJS/@EntryIndexedValue">wwwroot\Identity\js\site.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CLIB_005CBOOTSTRAP_005CDIST_005CCSS_005CBOOTSTRAP_002ECSS/@EntryIndexedValue">wwwroot\Identity\lib\bootstrap\dist\css\bootstrap.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CLIB_005CBOOTSTRAP_005CDIST_005CJS_005CBOOTSTRAP_002EBUNDLE_002EJS/@EntryIndexedValue">wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.bundle.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_002DVALIDATION_002DUNOBTRUSIVE_005CJQUERY_002EVALIDATE_002EUNOBTRUSIVE_002EJS/@EntryIndexedValue">wwwroot\Identity\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_002DVALIDATION_005CDIST_005CJQUERY_002EVALIDATE_002EJS/@EntryIndexedValue">wwwroot\Identity\lib\jquery-validation\dist\jquery.validate.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CIDENTITY_005CLIB_005CJQUERY_005CDIST_005CJQUERY_002EJS/@EntryIndexedValue">wwwroot\Identity\lib\jquery\dist\jquery.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CLOGIN/@EntryIndexedValue">wwwroot\login</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CREGISTER/@EntryIndexedValue">wwwroot\register</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005C_005FFRAMEWORK_005CASPNETCORE_002DBROWSER_002DREFRESH_002EJS/@EntryIndexedValue">wwwroot\_framework\aspnetcore-browser-refresh.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005C_005FFRAMEWORK_005CBLAZOR_002ESERVER_002EJS/@EntryIndexedValue">wwwroot\_framework\blazor.server.js</s:String></wpf:ResourceDictionary>

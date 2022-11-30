@@ -8,14 +8,14 @@ public class SilverTierInvoice : InvoiceBase
 
     public SilverTierInvoice(Farmer farmer)
     {
-        animals = farmer.Animals();
+        Animals = farmer.Animals();
 
-        sites = farmer.Sites;
+        Sites = farmer.Sites;
     }
 
     public override double CalculateTotalInvoicePrice()
     {
-        return Math.Max(CalculateTotalAnimalPrice() + CalculateTotalSitePrice() - BASE_SITE_PRICE + SilverTierCharge,
+        return Math.Max(CalculateTotalAnimalPrice() + CalculateTotalSitePrice() - BaseSitePrice + SilverTierCharge,
             0);
     }
 }

@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.ViewEngines
-@inject IWebHostEnvironment Environment
-@inject ICompositeViewEngine Engine
+@inject IWebHostEnvironment _environment
+@inject ICompositeViewEngine _engine
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 @{
-                    var result = Engine.FindView(ViewContext, "_LoginPartial", false);
+                    var result = _engine.FindView(ViewContext, "_LoginPartial", false);
                 }
                 @if (result.Success)
                 {
@@ -41,6 +41,8 @@
                 {
                     throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
                                                         "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
+                                                        // ReSharper disable once RedundantNameQualifier
+                                                        //Not redundant, breaks refreshes on certain pages if removed.
                                                         $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
                 }
             </div>

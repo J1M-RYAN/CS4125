@@ -8,9 +8,9 @@ public class BronzeTierInvoice : InvoiceBase
 
     public BronzeTierInvoice(Farmer farmer)
     {
-        animals = farmer.Animals();
+        Animals = farmer.Animals();
 
-        sites = farmer.Sites;
+        Sites = farmer.Sites;
     }
 
     public override double CalculateTotalInvoicePrice()

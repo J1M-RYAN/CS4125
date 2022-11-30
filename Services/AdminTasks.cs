@@ -11,7 +11,7 @@ public class AdminTasks
         var users = SystemController.System.GetUsers();
         foreach (var user in users)
             if (user is Farmer farmer)
-                switch (farmer.tier)
+                switch (farmer.Tier)
                 {
                     case Tier.Bronze:
                     {

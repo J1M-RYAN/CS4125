@@ -7,39 +7,39 @@ namespace CS4125.Data.System;
 // Concrete Subject
 public class System : IRegister, ISubject
 {
-    private readonly HashSet<IObserver> PaidSubscribers;
-    private readonly HashSet<User> Users;
+    private readonly HashSet<IObserver> _paidSubscribers;
+    private readonly HashSet<User> _users;
 
     public System()
     {
-        Users = new HashSet<User>();
-        PaidSubscribers = new HashSet<IObserver>();
+        _users = new HashSet<User>();
+        _paidSubscribers = new HashSet<IObserver>();
     }
 
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
         var f = new Farmer(email, firstName, lastName, password);
-        Users.Add(f);
+        _users.Add(f);
     }
 
     public void Attach(IObserver observer)
     {
-        PaidSubscribers.Add((Farmer) observer);
+        _paidSubscribers.Add((Farmer) observer);
     }
 
     public void Detach(IObserver observer)
     {
-        PaidSubscribers.Remove((Farmer) observer);
+        _paidSubscribers.Remove((Farmer) observer);
     }
 
     public void Notify()
     {
-        foreach (var observer in PaidSubscribers) observer.Update();
+        foreach (var observer in _paidSubscribers) observer.Update();
     }
 
     public HashSet<User> GetUsers()
     {
-        return Users;
+        return _users;
     }
 }
