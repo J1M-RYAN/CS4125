@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.profile-logo {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.card-title {
+    color: gray;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.card-content {
+    font-size: 2rem;
+    font-weight: 500;
+}
