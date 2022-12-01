@@ -1,12 +1,15 @@
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> UserManager;
 @inject SignInManager<IdentityUser> _signInManager
 <div>
     <div class="header">
         <h1>Overview</h1>
         Welcome to Farm Ledger.
         <div class="account">
-            <div>atfullName</div>
+            <div>@Message</div>
             <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
@@ -36,3 +39,29 @@
 
     </div>
 </div>
+
+@code {
+    //run LogUsername on load
+    protected override async Task OnInitializedAsync()
+    {
+        await LogUsername();
+    }
+    string Message = "User not authenticated!";
+
+    private async Task LogUsername()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var currentUser = await UserManager.GetUserAsync(user);
+            Message = (currentUser.Email);
+            Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
+        }
+        else
+        {
+            Console.WriteLine(Message);
+        }
+    }
+}
