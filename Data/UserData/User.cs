@@ -2,16 +2,14 @@ namespace CS4125.Data.UserData;
 
 public abstract class User
 {
-    public User(string email, string firstName, string lastName, string password)
+    public User(string email, string firstName, string lastName)
     {
         Email = email;
         FirstName = firstName;
         LastName = lastName;
-        Password = password;
     }
 
     public string Email { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Password { get; set; }
 }

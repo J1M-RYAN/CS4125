@@ -13,9 +13,9 @@ public class Farmer : User, IObserver
     private System.System subject;
     public Tier Tier;
 
-    public Farmer(System.System subject, string email, string firstName, string lastName, string password) : base(email,
-        firstName, lastName,
-        password)
+    public Farmer(System.System subject, string email, string firstName, string lastName) : base(email,
+        firstName, lastName)
+
     {
         _invoices = new HashSet<Invoice>();
         Sites = new List<Site>();
@@ -61,6 +61,19 @@ public class Farmer : User, IObserver
                 return invoice;
 
         return null;
+    }
+
+    public int getSiteCount()
+    {
+        return Sites.Count;
+    }
+
+    public int getAnimalCount()
+    {
+        var count = 0;
+        foreach (var site in Sites) count += site.getAnimalCount();
+
+        return count;
     }
 }
 

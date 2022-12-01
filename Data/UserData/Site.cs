@@ -33,4 +33,9 @@ public class Site : ISite
     {
         return _animals;
     }
+
+    public int getAnimalCount()
+    {
+        return _animals.Count;
+    }
 }

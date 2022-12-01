@@ -1,16 +1,20 @@
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.Identity
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@using Microsoft.AspNetCore.Identity;
-@inject UserManager<IdentityUser> UserManager;
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> _signInManager
+@using CS4125.Controllers
+@using CS4125.Data.UserData
+@using CS4125.Data.System
+@* @inject SystemController systemController *@
 <div>
     <div class="header">
         <h1>Overview</h1>
         Welcome to Farm Ledger.
         <div class="account">
             <div>@Message</div>
-            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
+            <img class="profile-logo" src="profile-icon.png" alt="profile logo" />
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
                 <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">
@@ -22,7 +26,7 @@
     <div class="card-holder">
         <div class="card">
             <div class="card-title">Sites</div>
-            <div class="card-content">2</div>
+            <div class="card-content">@siteCount</div>
         </div>
         <div class="card">
             <div class="card-title">Animals</div>
@@ -44,11 +48,16 @@
     //run LogUsername on load
     protected override async Task OnInitializedAsync()
     {
-        await LogUsername();
+        await GetUser();
     }
     string Message = "User not authenticated!";
+    System system = SystemController.System;
+    Farmer farmer;
 
-    private async Task LogUsername()
+    int siteCount = 404;
+    int animalCount = 404;
+
+    private async Task GetUser()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
@@ -56,12 +65,32 @@
         if (user.Identity.IsAuthenticated)
         {
             var currentUser = await UserManager.GetUserAsync(user);
-            Message = (currentUser.Email);
+            if (currentUser == null)
+            {
+                Message = "User not found";
+                return;
+            }
+            if (currentUser.Email != null) Message = (currentUser.Email);
+            farmer = (Farmer)FindUser(currentUser.Id);
+            siteCount = farmer.getSiteCount();
+            animalCount = farmer.getAnimalCount();
+
+
             Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
+            farmer = (Farmer)system.GetUser(currentUser.Id);
         }
         else
         {
             Console.WriteLine(Message);
         }
     }
+
+
+    public User FindUser(string id)
+    {
+        var user = system.GetUser(id);
+
+        return user;
+    }
+
 }

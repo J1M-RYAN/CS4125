@@ -6,6 +6,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using CS4125.Controllers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -72,61 +73,47 @@ public class RegisterModel : PageModel
         switch (ModelState.IsValid)
         {
             case true:
-            {
-                var user = CreateUser();
-                user.EmailConfirmed = true;
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
                 {
-                    // _logger.LogInformation("User created a new account with password");
-                    //
-                    // var userId = await _userManager.GetUserIdAsync(user);
-                    // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    // code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    // var callbackUrl = Url.Page(
-                    //     "/Account/ConfirmEmail",
-                    //     null,
-                    //     new {area = "Identity", userId, code, returnUrl},
-                    //     Request.Scheme);
-                    //
-                    // await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    //
-                    // if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    //     return RedirectToPage("RegisterConfirmation", new {email = Input.Email, returnUrl});
-                    // await _signInManager.SignInAsync(user, false);
-                    //return LocalRedirect("/login");
-                    switch (ModelState.IsValid)
+                    var user = CreateUser();
+                    user.EmailConfirmed = true;
+                    await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                    await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                    var result = await _userManager.CreateAsync(user, Input.Password);
+
+                    if (result.Succeeded)
                     {
-                        case true:
+                        var system = SystemController.System;
+                        system.AddUser(user.Id, Input.Email);
+
+                        switch (ModelState.IsValid)
+
                         {
-                            var results =
-                                await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, true, false);
-                            switch (results.Succeeded)
-                            {
-                                case true:
-                                    _logger.LogInformation("User logged in");
-                                    return LocalRedirect("/");
-                            }
+                            case true:
+                                {
+                                    var results =
+                                        await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, true, false);
+                                    switch (results.Succeeded)
+                                    {
+                                        case true:
+                                            _logger.LogInformation("User logged in");
+                                            return LocalRedirect("/");
+                                    }
 
+                                }
+
+
+                                break;
                         }
-
-                           
-                            break;
                     }
-                }
-                foreach (var error in result.Errors)
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    foreach (var error in result.Errors)
+                        ModelState.AddModelError(string.Empty, error.Description);
 
-                break;
-            }
-            }
-                // If we got this far, something failed, redisplay form
-                return Page();
+                    break;
+                }
         }
+        // If we got this far, something failed, redisplay form
+        return Page();
+    }
 
     private IdentityUser CreateUser()
     {
@@ -146,7 +133,7 @@ public class RegisterModel : PageModel
     {
         if (!_userManager.SupportsUserEmail)
             throw new NotSupportedException("The default UI requires a user store with email support.");
-        return (IUserEmailStore<IdentityUser>) _userStore;
+        return (IUserEmailStore<IdentityUser>)_userStore;
     }
 
     /// <summary>

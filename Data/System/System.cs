@@ -11,29 +11,32 @@ public class System : IRegister, ISubject
     private readonly HashSet<User> _users;
     private readonly CompanyData _companyData;
 
+    private Dictionary<string, User> _userDictionary;
+
     public System()
     {
         _users = new HashSet<User>();
         _paidSubscribers = new HashSet<IObserver>();
         var address = new Address();
         _companyData = new CompanyData("Farm Ledger", address);
+        _userDictionary = new Dictionary<string, User>();
     }
 
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
-        var f = new Farmer(this, email, firstName, lastName, password);
+        var f = new Farmer(this, email, firstName, lastName);
         _users.Add(f);
     }
 
     public void Attach(IObserver observer)
     {
-        _paidSubscribers.Add((Farmer) observer);
+        _paidSubscribers.Add((Farmer)observer);
     }
 
     public void Detach(IObserver observer)
     {
-        _paidSubscribers.Remove((Farmer) observer);
+        _paidSubscribers.Remove((Farmer)observer);
     }
 
     public void Notify()
@@ -49,5 +52,18 @@ public class System : IRegister, ISubject
     public CompanyData GetCompanyData()
     {
         return _companyData;
+    }
+
+    public void AddUser(string id, string email)
+    {
+        var f = new Farmer(this, email, null, null);
+
+        _userDictionary.Add(id, f);
+        _users.Add(f);
+    }
+
+    public User GetUser(string id)
+    {
+        return _userDictionary[id];
     }
 }
