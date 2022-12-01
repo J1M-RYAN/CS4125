@@ -6,7 +6,4 @@ idea/
 .vscode/
 
 .DS_Store
-app.db
-app.db-shm
-app.db-wal
-Folder.DotSettings.user
+
