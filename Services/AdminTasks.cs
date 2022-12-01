@@ -1,5 +1,6 @@
 using CS4125.Controllers;
 using CS4125.Data.Finance;
+using CS4125.Data.Finance.State;
 using CS4125.Data.UserData;
 using CS4125.Data.System;
 
@@ -18,7 +19,9 @@ public class AdminTasks
                     case Tier.Bronze:
                     {
                         var bronzeTierInvoice = new BronzeTierInvoice(farmer);
-                        var invoiceTotal = bronzeTierInvoice.CalculateTotalInvoicePrice();
+                        //tier is bronze, so make a new BronzeTierSub state
+                        farmer.state = new BronzeTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(bronzeTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(), system.GetCompanyData().getAddress() );
 
                         farmer.AddInvoice(invoice);
@@ -27,7 +30,8 @@ public class AdminTasks
                     case Tier.Silver:
                     {
                         var silverTierInvoice = new SilverTierInvoice(farmer);
-                        var invoiceTotal = silverTierInvoice.CalculateTotalInvoicePrice();
+                        farmer.state = new SilverTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(silverTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(), system.GetCompanyData().getAddress() );
 
                         farmer.AddInvoice(invoice);
@@ -37,7 +41,8 @@ public class AdminTasks
                     {
                         var baseInvoice = new SilverTierInvoice(farmer);
                         var goldTierInvoice = new GoldTierInvoice(baseInvoice);
-                        var invoiceTotal = goldTierInvoice.CalculateTotalInvoicePrice();
+                        farmer.state = new GoldTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(goldTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(), system.GetCompanyData().getAddress() );
 
                         farmer.AddInvoice(invoice);

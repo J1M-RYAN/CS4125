@@ -1,5 +1,6 @@
 ﻿using CS4125.Data.AnimalData;
 using CS4125.Data.Finance;
+using CS4125.Data.Finance.State;
 using CS4125.Data.System;
 
 namespace CS4125.Data.UserData;
@@ -21,6 +22,8 @@ public class Farmer : User, IObserver
     }
 
     public List<Site> Sites { get; }
+    
+    public State state;
 
     public void Update(ISubject subject)
     {
@@ -49,6 +52,21 @@ public class Farmer : User, IObserver
         foreach (var site in Sites) animals.AddRange(site.GetAnimals());
 
         return animals;
+    }
+
+    public Invoice GetInvoiceToPay()
+    {
+        
+        foreach (var invoice in _invoices)
+        {
+            if (!invoice.IsPaid())
+            {
+                return invoice;
+            }
+        }
+
+        return null;
+        
     }
 }
 
