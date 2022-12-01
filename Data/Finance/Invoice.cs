@@ -12,13 +12,20 @@ public class Invoice
 
     private double _total;
 
-    public Invoice(Farmer farmer, double total)
+    private String _businessName;
+
+    private Address _businessAddress;
+
+    public Invoice(Farmer farmer, double total, String businessName, Address businessAddress)
 
     {
         _farmer = farmer;
         _total = total;
         _date = DateTime.Now;
         _paid = false;
+        _businessAddress = businessAddress;
+        _businessName = businessName;
+
     }
 
     public bool IsPaid()

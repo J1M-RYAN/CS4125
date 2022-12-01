@@ -9,11 +9,14 @@ public class System : IRegister, ISubject
 {
     private readonly HashSet<IObserver> _paidSubscribers;
     private readonly HashSet<User> _users;
+    private CompanyData _companyData;
 
     public System()
     {
         _users = new HashSet<User>();
         _paidSubscribers = new HashSet<IObserver>();
+        var address = new Address();
+        _companyData = new CompanyData("Farm Ledger", address);
     }
 
 
@@ -43,8 +46,8 @@ public class System : IRegister, ISubject
         return _users;
     }
 
-    public double calculateInvoicePrice(Farmer f)
+    public CompanyData getCompanyData()
     {
-        return 25;
+        return _companyData;
     }
 }
