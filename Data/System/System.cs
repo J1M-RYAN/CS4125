@@ -46,7 +46,7 @@ public class System : IRegister, ISubject
         return _users;
     }
 
-    public CompanyData getCompanyData()
+    public CompanyData GetCompanyData()
     {
         return _companyData;
     }

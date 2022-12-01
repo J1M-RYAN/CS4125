@@ -25,7 +25,7 @@ public class Farmer : User, IObserver
     public void Update(ISubject subject)
     {
         System.System system = subject as System.System; 
-        _invoices.Add(new Invoice(this, 25, system.getCompanyData().getName(), system.getCompanyData().getAddress()));
+        _invoices.Add(new Invoice(this, 25, system.GetCompanyData().getName(), system.GetCompanyData().getAddress()));
     }
 
     public void PayInvoice(Invoice invoice)
