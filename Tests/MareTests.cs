@@ -6,9 +6,10 @@ namespace CS4125.Tests
     public class MareTests
     {
         [Fact]
+        // Test on the Pregnancy methods for a Mare
         public void Get_IsPregnant()
         {
-            Mare mare1 = new Mare(245, DateTime.Now, EquineBreed.ARABIAN, true);
+            Mare mare1 = new Mare(245, DateTime.Now, EquineBreed.Arabian, true);
             mare1.ArtificialInsemination();
             
             bool expected2 = true;
@@ -19,9 +20,10 @@ namespace CS4125.Tests
         }
         
         [Fact]
-        public void Set_IsSurrigate()
+        // Test on the Surrogacy methods for a Mare
+        public void Set_IsSurrogate()
         {
-            Mare mare2 = new Mare(245, DateTime.Now, EquineBreed.ARABIAN, true);
+            Mare mare2 = new Mare(25, DateTime.Now, EquineBreed.Arabian, true);
             mare2.SetIsSurrogate(false);
             
             bool expected2 = false;

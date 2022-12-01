@@ -6,35 +6,30 @@ namespace CS4125.Tests
     public class BullTests
     {
         [Fact]
+        // Testing the bull ring method unique to Bull
         public void Set_BullHasBullRing()
         {
-            Bull bull1 = new Bull(235, DateTime.Now, BovineBreed.HOLSTEIN);
+            Bull bull1 = new Bull(235, DateTime.Now, BovineBreed.Holstein);
             bull1.SetHasBullRing(true);
-
-            // Arrange
+            
             bool expected1 = true;
-
-            // Act
+            
             bool actual1 = bull1.GetHasBullRing();
-
-            // Assert
+            
             Assert.Equal(expected1, actual1);
         }
 
         [Fact]
+        // Testing the Castrate method on a Bull
         public void Set_BullIsCastrated()
         {
-            Bull bull2 = new Bull(235, DateTime.Now, BovineBreed.HOLSTEIN);
+            Bull bull2 = new Bull(235, DateTime.Now, BovineBreed.Holstein);
             bull2.SetIsCastrated(true);
-
-            // Arrange
-            // change to true if castrated, issue with the setter
+            
             bool expected2 = true;
             
-            // Act
             var actual2 = bull2.GetIsCastrated();
             
-            // Assert
             Assert.Equal(expected2, actual2);
         }
     }
