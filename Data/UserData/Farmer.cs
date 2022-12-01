@@ -1,5 +1,6 @@
 ﻿using CS4125.Data.AnimalData;
 using CS4125.Data.Finance;
+using CS4125.Data.System;
 
 namespace CS4125.Data.UserData;
 
@@ -7,21 +8,23 @@ namespace CS4125.Data.UserData;
 public class Farmer : User, IObserver
 {
     private readonly HashSet<Invoice> _invoices;
+    private System.System subject;
     public Tier Tier;
 
-    public Farmer(string email, string firstName, string lastName, string password) : base(email, firstName, lastName,
+    public Farmer(System.System subject, string email, string firstName, string lastName, string password) : base(email, firstName, lastName,
         password)
     {
         _invoices = new HashSet<Invoice>();
         Sites = new List<Site>();
         Tier = Tier.Bronze;
+        this.subject = subject;
     }
 
     public List<Site> Sites { get; }
 
-    public void Update()
+    public void Update(ISubject subject)
     {
-        _invoices.Add(new Invoice(this, 25));
+        _invoices.Add(new Invoice(this, (subject as System.System).calculateInvoicePrice(this)));
     }
 
     public void PayInvoice(Invoice invoice)

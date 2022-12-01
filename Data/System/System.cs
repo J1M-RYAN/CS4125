@@ -19,7 +19,7 @@ public class System : IRegister, ISubject
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)
     {
-        var f = new Farmer(email, firstName, lastName, password);
+        var f = new Farmer(this, email, firstName, lastName, password);
         _users.Add(f);
     }
 
@@ -35,11 +35,16 @@ public class System : IRegister, ISubject
 
     public void Notify()
     {
-        foreach (var observer in _paidSubscribers) observer.Update();
+        foreach (var observer in _paidSubscribers) observer.Update(this);
     }
 
     public HashSet<User> GetUsers()
     {
         return _users;
+    }
+
+    public double calculateInvoicePrice(Farmer f)
+    {
+        return 25;
     }
 }
