@@ -58,8 +58,9 @@ public class System : IRegister, ISubject
     {
         var f = new Farmer(this, email, null, null);
 
-        _userDictionary.Add(id, f);
+        _userDictionary[id] = f;
         _users.Add(f);
+        f.AddSite();
     }
 
     public User GetUser(string id)

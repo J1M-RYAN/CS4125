@@ -1,8 +1,8 @@
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.Identity
-@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthenticationStateProvider _authenticationStateProvider
 @using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@inject UserManager<IdentityUser> _userManager
 @inject SignInManager<IdentityUser> _signInManager
 @using CS4125.Controllers
 @using CS4125.Data.UserData
@@ -13,7 +13,7 @@
         <h1>Overview</h1>
         Welcome to Farm Ledger.
         <div class="account">
-            <div>@Message</div>
+            <div>@_message</div>
             <img class="profile-logo" src="profile-icon.png" alt="profile logo" />
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
@@ -26,15 +26,15 @@
     <div class="card-holder">
         <div class="card">
             <div class="card-title">Sites</div>
-            <div class="card-content">@siteCount</div>
+            <div class="card-content">@_siteCount</div>
         </div>
         <div class="card">
             <div class="card-title">Animals</div>
-            <div class="card-content">60</div>
+            <div class="card-content">@_animalCount</div>
         </div>
         <div class="card">
-            <div class="card-title">Days of Feed Left</div>
-            <div class="card-content">43</div>
+            <div class="card-title">Remaining Site Capacity</div>
+            <div class="card-content">@_siteCapacity</div>
         </div>
         <div class="card">
             <div class="card-title">Next Payment Due</div>
@@ -50,45 +50,47 @@
     {
         await GetUser();
     }
-    string Message = "User not authenticated!";
-    System system = SystemController.System;
-    Farmer farmer;
+    string _message = "User not authenticated!";
+    System _system = SystemController.System;
+    Farmer _farmer;
 
-    int siteCount = 404;
-    int animalCount = 404;
+    int _siteCount = 404;
+    int _animalCount = 404;
+    int _siteCapacity = 404;
 
     private async Task GetUser()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
         if (user.Identity.IsAuthenticated)
         {
-            var currentUser = await UserManager.GetUserAsync(user);
+            var currentUser = await _userManager.GetUserAsync(user);
             if (currentUser == null)
             {
-                Message = "User not found";
+                _message = "User not found";
                 return;
             }
-            if (currentUser.Email != null) Message = (currentUser.Email);
-            farmer = (Farmer)FindUser(currentUser.Id);
-            siteCount = farmer.getSiteCount();
-            animalCount = farmer.getAnimalCount();
+            if (currentUser.Email != null) _message = (currentUser.Email);
+            _farmer = (Farmer)FindUser(currentUser.Id);
+            _siteCount = _farmer.GetSiteCount();
+            _animalCount = _farmer.GetAnimalCount();
+            _siteCapacity = _farmer.GetRemainingCapacity();
 
 
             Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
-            farmer = (Farmer)system.GetUser(currentUser.Id);
+            _farmer = (Farmer)_system.GetUser(currentUser.Id);
         }
         else
         {
-            Console.WriteLine(Message);
+            Console.WriteLine(_message);
         }
     }
 
 
     public User FindUser(string id)
     {
-        var user = system.GetUser(id);
+        var user = _system.GetUser(id);
 
         return user;
     }

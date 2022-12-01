@@ -19,8 +19,8 @@ public class AdminTasks
                     {
                         var bronzeTierInvoice = new BronzeTierInvoice(farmer);
                         //tier is bronze, so make a new BronzeTierSub state
-                        farmer.state = new BronzeTierSub(farmer.state);
-                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(bronzeTierInvoice);
+                        farmer.State = new BronzeTierSub(farmer.State);
+                        var invoiceTotal = farmer.State.CalculateTotalInvoicePrice(bronzeTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
                             system.GetCompanyData().getAddress());
 
@@ -30,8 +30,8 @@ public class AdminTasks
                     case Tier.Silver:
                     {
                         var silverTierInvoice = new SilverTierInvoice(farmer);
-                        farmer.state = new SilverTierSub(farmer.state);
-                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(silverTierInvoice);
+                        farmer.State = new SilverTierSub(farmer.State);
+                        var invoiceTotal = farmer.State.CalculateTotalInvoicePrice(silverTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
                             system.GetCompanyData().getAddress());
 
@@ -42,8 +42,9 @@ public class AdminTasks
                     {
                         var baseInvoice = new SilverTierInvoice(farmer);
                         var goldTierInvoice = new GoldTierInvoice(baseInvoice);
-                        farmer.state = new GoldTierSub(farmer.state);
-                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(goldTierInvoice);
+                        //tier is bronze, so make a new GoldTierSub state
+                        farmer.State = new GoldTierSub(farmer.State);
+                        var invoiceTotal = farmer.State.CalculateTotalInvoicePrice(goldTierInvoice);
                         var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
                             system.GetCompanyData().getAddress());
 

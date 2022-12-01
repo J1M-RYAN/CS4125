@@ -9,8 +9,8 @@ public class Farmer : User, IObserver
 {
     private readonly HashSet<Invoice> _invoices;
 
-    public State state;
-    private System.System subject;
+    public State State;
+    private System.System _subject;
     public Tier Tier;
 
     public Farmer(System.System subject, string email, string firstName, string lastName) : base(email,
@@ -20,7 +20,7 @@ public class Farmer : User, IObserver
         _invoices = new HashSet<Invoice>();
         Sites = new List<Site>();
         Tier = Tier.Bronze;
-        this.subject = subject;
+        this._subject = subject;
     }
 
     public List<Site> Sites { get; }
@@ -63,17 +63,29 @@ public class Farmer : User, IObserver
         return null;
     }
 
-    public int getSiteCount()
+    public int GetSiteCount()
     {
         return Sites.Count;
     }
 
-    public int getAnimalCount()
+    public int GetAnimalCount()
     {
         var count = 0;
-        foreach (var site in Sites) count += site.getAnimalCount();
+        foreach (var site in Sites) count += site.GetAnimalCount();
 
         return count;
+    }
+    
+    public int GetRemainingCapacity(){
+        var capacity = 0;
+        foreach (var site in Sites) capacity += site.GetRemainingCapacity();
+
+        return capacity;
+    }
+
+    public void AddSite()
+    {
+        Sites.Add(new Site("site 1", new Address()));
     }
 }
 

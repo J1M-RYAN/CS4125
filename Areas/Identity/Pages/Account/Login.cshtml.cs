@@ -4,6 +4,7 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using CS4125.Controllers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -80,6 +81,14 @@ public class LoginModel : PageModel
                 {
                     case true:
                         _logger.LogInformation("User logged in");
+                        
+                        //get an IdentityUser from the database with SigninManager
+                        var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+                        _logger.LogInformation(user.Email);
+                        
+                        var system = SystemController.System;
+                        system.AddUser(user.Id, Input.Email);
+                        
                         return LocalRedirect(returnUrl);
                 }
 

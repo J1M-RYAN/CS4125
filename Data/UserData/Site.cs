@@ -6,6 +6,9 @@ public class Site : ISite
 {
     private readonly HashSet<Animal> _animals;
     private string _name;
+    private int _capacity =100;
+    
+    
 
     public Site(string name, Address address)
     {
@@ -34,8 +37,14 @@ public class Site : ISite
         return _animals;
     }
 
-    public int getAnimalCount()
+    public int GetAnimalCount()
     {
         return _animals.Count;
+    }
+    
+    public int GetRemainingCapacity()
+    {
+        var remainingCapacity = _capacity - _animals.Count;
+        return remainingCapacity;
     }
 }
