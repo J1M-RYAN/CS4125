@@ -2,7 +2,6 @@ using CS4125.Controllers;
 using CS4125.Data.Finance;
 using CS4125.Data.Finance.State;
 using CS4125.Data.UserData;
-using CS4125.Data.System;
 
 namespace CS4125.Services;
 
@@ -10,7 +9,7 @@ public class AdminTasks
 {
     public static void CreateInvoiceForAllUsers()
     {
-        Data.System.System system = SystemController.System;
+        var system = SystemController.System;
         var users = SystemController.System.GetUsers();
         foreach (var user in users)
             if (user is Farmer farmer)

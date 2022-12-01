@@ -5,8 +5,8 @@ namespace CS4125.Data.Finance.State;
 public abstract class State
 {
     protected internal double charge;
-    protected internal Tier tier;
     protected internal Farmer farmer;
+    protected internal Tier tier;
 
     public double Charge
     {

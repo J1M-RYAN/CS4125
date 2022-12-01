@@ -4,28 +4,27 @@ namespace CS4125.Data.System;
 
 public class CompanyData
 {
+    private readonly Address _address;
     private string _name;
-    private Address _address;
+
     public CompanyData(string name, Address address)
     {
-        this._name = name;
-        this._address = _address;
+        _name = name;
+        _address = _address;
     }
 
-    public String getName()
+    public string getName()
     {
-        return this._name;
+        return _name;
     }
 
-    public void setName(String name)
+    public void setName(string name)
     {
-        this._name = name;
+        _name = name;
     }
 
     public Address getAddress()
     {
-        return this._address;
+        return _address;
     }
-    
-    
 }
