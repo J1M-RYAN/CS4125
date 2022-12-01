@@ -11,13 +11,10 @@ namespace CS4125.Tests
             Mare mare1 = new Mare(245, DateTime.Now, EquineBreed.ARABIAN, true);
             mare1.ArtificialInsemination();
             
-            // Arrange
             bool expected2 = true;
             
-            // Act
             bool actual2 = mare1.TestPregnancy();
             
-            // Assert
             Assert.Equal(expected2, actual2);
         }
         
@@ -27,13 +24,10 @@ namespace CS4125.Tests
             Mare mare2 = new Mare(245, DateTime.Now, EquineBreed.ARABIAN, true);
             mare2.SetIsSurrogate(false);
             
-            // Arrange
             bool expected2 = false;
 
-            // Act
             bool actual2 = mare2.GetIsSurrogate();
             
-            // Assert
             Assert.Equal(expected2, actual2);
         }
     }
