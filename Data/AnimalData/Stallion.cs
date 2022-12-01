@@ -10,12 +10,9 @@ public class Stallion : Equine, IMale
         _studPrice = 0;
     }
 
-    public bool IsCastrated { get; set; }
+    public bool GetIsCastrated() => _isCastrated;
 
-    public void Castrate()
-    {
-        _isCastrated = true;
-    }
+    public void SetIsCastrated(bool value) => _isCastrated = value;
 
     public double GetStudPrice()
     {

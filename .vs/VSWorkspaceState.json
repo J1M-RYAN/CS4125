@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\Tests"
+  ],
+  "SelectedNode": "\\Tests\\BullTests.cs",
+  "PreviewInSolutionExplorer": false
+}
