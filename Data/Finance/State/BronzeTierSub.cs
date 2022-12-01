@@ -1,10 +1,9 @@
 namespace CS4125.Data.Finance.State;
-using CS4125.Data.AnimalData;
-using CS4125.Data.UserData;
+
 //state pattern stuff
 public class BronzeTierSub : State
 {
-    double _serviceFee;
+    private double _serviceFee;
 
     // Constructor
     public BronzeTierSub(State state)
@@ -19,7 +18,6 @@ public class BronzeTierSub : State
 
     public override double CalculateTotalInvoicePrice(InvoiceBase invoice)
     {
-            return invoice.CalculateTotalAnimalPrice() + invoice.CalculateTotalSitePrice() + _serviceFee;
-        }
-    
+        return invoice.CalculateTotalAnimalPrice() + invoice.CalculateTotalSitePrice() + _serviceFee;
+    }
 }

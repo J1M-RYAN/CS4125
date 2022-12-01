@@ -12,7 +12,7 @@ public abstract class InvoiceBase
     private const double BaseOvinePrice = 0.3;
     protected List<Animal> Animals = null!;
     protected List<Site> Sites = null!;
-    
+
     public double CalculateTotalAnimalPrice()
     {
         double total = 0;
@@ -189,7 +189,5 @@ public abstract class InvoiceBase
         price += Sites.Sum(site => CalculateTotalSitePrice());
 
         return price;
-
-        
     }
 }
