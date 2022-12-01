@@ -1,5 +1,6 @@
 namespace CS4125.Data.Finance.State;
-
+using CS4125.Data.AnimalData;
+using CS4125.Data.UserData;
 //state pattern stuff
 public class GoldTierSub : State
 {
@@ -25,4 +26,6 @@ public class GoldTierSub : State
 
         return invoiceBasePrice + _serviceFee;
     }
+    
 }
+    

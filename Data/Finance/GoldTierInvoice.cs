@@ -6,4 +6,5 @@ public class GoldTierInvoice : InvoiceDecorator
         : base(invoice)
     {
     }
+
 }

@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> _signInManager
 
 <div>
@@ -6,7 +8,7 @@
         Welcome to Farm Ledger.
         <div class="account">
             <div>atfullName</div>
-            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
+            <img class="profile-logo" src="profile-icon.png" alt="profile logo" />
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
                 <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">

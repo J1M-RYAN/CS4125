@@ -9,7 +9,7 @@ public class Context
     // Constructor
     public Context(State state)
     {
-        _state = state;
+        this._state = state;
     }
 
     // Gets or sets the state
@@ -34,7 +34,6 @@ public class Context
             _ => new BronzeTierSub(State)
         };
     }
-
     //handle
     public void Handle()
     {

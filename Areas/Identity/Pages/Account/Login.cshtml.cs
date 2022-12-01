@@ -74,8 +74,7 @@ public class LoginModel : PageModel
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result =
-                    await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, false);
                 switch (result.Succeeded)
                 {
                     case true:
@@ -88,7 +87,6 @@ public class LoginModel : PageModel
                     case true:
                         return RedirectToPage("./LoginWith2fa", new {ReturnUrl = returnUrl, Input.RememberMe});
                 }
-
                 switch (result.IsLockedOut)
                 {
                     case true:
