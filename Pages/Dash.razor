@@ -1,0 +1,67 @@
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> UserManager;
+@inject SignInManager<IdentityUser> _signInManager
+<div>
+    <div class="header">
+        <h1>Overview</h1>
+        Welcome to Farm Ledger.
+        <div class="account">
+            <div>@Message</div>
+            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
+            <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
+                <input name="__RequestVerificationToken" type="hidden" value="">
+                <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="card-holder">
+        <div class="card">
+            <div class="card-title">Sites</div>
+            <div class="card-content">2</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Animals</div>
+            <div class="card-content">60</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Days of Feed Left</div>
+            <div class="card-content">43</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Next Payment Due</div>
+            <div class="card-content">1/10/22</div>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    //run LogUsername on load
+    protected override async Task OnInitializedAsync()
+    {
+        await LogUsername();
+    }
+    string Message = "User not authenticated!";
+
+    private async Task LogUsername()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var currentUser = await UserManager.GetUserAsync(user);
+            Message = (currentUser.Email);
+            Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
+        }
+        else
+        {
+            Console.WriteLine(Message);
+        }
+    }
+}

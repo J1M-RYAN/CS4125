@@ -29,7 +29,7 @@ public class Site : ISite
         AddAnimal(animal);
     }
 
-    public HashSet<Animal> GetAnimals()
+    public IEnumerable<Animal> GetAnimals()
     {
         return _animals;
     }

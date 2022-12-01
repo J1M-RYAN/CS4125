@@ -2,9 +2,9 @@ namespace CS4125.Data.AnimalData;
 
 public abstract class Equine : Animal
 {
-    public Equine(int id, DateTime dob, Sex sex, EquineBreed _breed) : base(id, dob, sex)
+    public Equine(int id, DateTime dob, Sex sex, EquineBreed breed) : base(id, dob, sex)
     {
-        Breed = _breed;
+        Breed = breed;
     }
 
     public EquineBreed Breed { get; }
@@ -12,20 +12,20 @@ public abstract class Equine : Animal
 
 public enum EquineBreed
 {
-    ARABIAN,
-    APPALOOSA,
-    BERKSHIRE,
-    BURGUNDY,
-    CHESTNUT,
-    CLEVELAND_BAY,
-    CREMELLO,
-    DAPPLE_GREY,
-    DUN,
-    GRAY,
-    GRULLA,
-    HAFLINGER,
-    HANOVERIAN,
-    JERSEY,
-    MUSTANG,
-    MORGAN
+    Arabian,
+    Appaloosa,
+    Berkshire,
+    Burgundy,
+    Chestnut,
+    ClevelandBay,
+    Cremello,
+    DappleGrey,
+    Dun,
+    Gray,
+    Grulla,
+    Haflinger,
+    Hanoverian,
+    Jersey,
+    Mustang,
+    Morgan
 }

@@ -4,6 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-CS4125-13292462-4CC1-4FDF-B690-9C30D27B26A4</UserSecretsId>
+        <RootNamespace>CS4125</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,6 +20,22 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.10"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0"/>
     </ItemGroup>
 
 </Project>
+

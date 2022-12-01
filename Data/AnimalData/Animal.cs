@@ -30,7 +30,7 @@ public abstract class Animal
         return _dateOfBirth;
     }
 
-    public Sex getSex()
+    public Sex GetSex()
     {
         return _sex;
     }

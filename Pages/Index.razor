@@ -1,50 +1,12 @@
-﻿@page "/app"
-@using Blazored.LocalStorage
-@inject ILocalStorageService LocalStorage
+﻿@page "/"
 
 <PageTitle>Overview</PageTitle>
 
-<div>
-    <div class="header">
-        <h1>Overview</h1>
-        Welcome to Farm Ledger.
-        <div class="account">
-            <div>@_fullName</div>
-            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
-        </div>
-    </div>
-    <div class="card-holder">
-        <div class="card">
-            <div class="card-title">Sites</div>
-            <div class="card-content">2</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Animals</div>
-            <div class="card-content">60</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Days of Feed Left</div>
-            <div class="card-content">43</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Next Payment Due</div>
-            <div class="card-content">1/10/22</div>
-        </div>
-
-    </div>
-</div>
-
-@code {
-
-    string _fullName = "";
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            _fullName = await LocalStorage.GetItemAsync<string>("name");
-            StateHasChanged();
-        }
-    }
-
-}
+<AuthorizeView>
+    <Authorized>
+        <Dash></Dash>
+    </Authorized>
+    <NotAuthorized>
+        <Landing></Landing>
+    </NotAuthorized>
+</AuthorizeView>

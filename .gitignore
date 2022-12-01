@@ -6,3 +6,6 @@ idea/
 .vscode/
 
 .DS_Store
+
+global.json
+

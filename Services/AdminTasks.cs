@@ -1,5 +1,6 @@
 using CS4125.Controllers;
 using CS4125.Data.Finance;
+using CS4125.Data.Finance.State;
 using CS4125.Data.UserData;
 
 namespace CS4125.Services;
@@ -8,16 +9,20 @@ public class AdminTasks
 {
     public static void CreateInvoiceForAllUsers()
     {
+        var system = SystemController.System;
         var users = SystemController.System.GetUsers();
         foreach (var user in users)
             if (user is Farmer farmer)
-                switch (farmer.tier)
+                switch (farmer.Tier)
                 {
                     case Tier.Bronze:
                     {
                         var bronzeTierInvoice = new BronzeTierInvoice(farmer);
-                        var invoiceTotal = bronzeTierInvoice.CalculateTotalInvoicePrice();
-                        var invoice = new Invoice(farmer, invoiceTotal);
+                        //tier is bronze, so make a new BronzeTierSub state
+                        farmer.state = new BronzeTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(bronzeTierInvoice);
+                        var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
+                            system.GetCompanyData().getAddress());
 
                         farmer.AddInvoice(invoice);
                         break;
@@ -25,8 +30,10 @@ public class AdminTasks
                     case Tier.Silver:
                     {
                         var silverTierInvoice = new SilverTierInvoice(farmer);
-                        var invoiceTotal = silverTierInvoice.CalculateTotalInvoicePrice();
-                        var invoice = new Invoice(farmer, invoiceTotal);
+                        farmer.state = new SilverTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(silverTierInvoice);
+                        var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
+                            system.GetCompanyData().getAddress());
 
                         farmer.AddInvoice(invoice);
                         break;
@@ -35,8 +42,10 @@ public class AdminTasks
                     {
                         var baseInvoice = new SilverTierInvoice(farmer);
                         var goldTierInvoice = new GoldTierInvoice(baseInvoice);
-                        var invoiceTotal = goldTierInvoice.CalculateTotalInvoicePrice();
-                        var invoice = new Invoice(farmer, invoiceTotal);
+                        farmer.state = new GoldTierSub(farmer.state);
+                        var invoiceTotal = farmer.state.CalculateTotalInvoicePrice(goldTierInvoice);
+                        var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
+                            system.GetCompanyData().getAddress());
 
                         farmer.AddInvoice(invoice);
                         break;
