@@ -25,14 +25,14 @@ namespace CS4125.Tests
         public void Set_BullIsCastrated()
         {
             Bull bull2 = new Bull(235, DateTime.Now, BovineBreed.HOLSTEIN);
-            bull2.Castrate();
+            bull2.SetIsCastrated(true);
 
             // Arrange
             // change to true if castrated, issue with the setter
             bool expected2 = true;
             
             // Act
-            var actual2 = bull2.IsCastrated;
+            var actual2 = bull2.GetIsCastrated();
             
             // Assert
             Assert.Equal(expected2, actual2);

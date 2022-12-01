@@ -25,14 +25,14 @@ namespace CS4125.Tests
         public void Set_Castrated()
         {
             Ram ram2 = new Ram(265, DateTime.Now, OvineBreed.HAMPSHIRE, 13.2);
-            ram2.Castrate();
+            ram2.SetIsCastrated(true);
             
             // Arrange
             // change to true if castrated, issue with the setter
             bool expected2 = true;
 
             // Act
-            bool actual2 = ram2.IsCastrated;
+            bool actual2 = ram2.GetIsCastrated();
 
             // Assert
             Assert.Equal(expected2, actual2);
