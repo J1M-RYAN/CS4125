@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - CS4125</title>
+    <title>@ViewData["Title"] - Farm Ledger</title>
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/Identity/lib/bootstrap/dist/css/bootstrap.css"/>
@@ -22,9 +23,10 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" href="~/">CS4125</a>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light   box-shadow mb-3">
+        <div class="container header-auth">
+            <img class="logo" src="logo.png" alt="logo"/>
+             <h3 > Farm Ledger </h3>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -55,18 +57,7 @@
         @RenderBody()
     </main>
 </div>
-<footer class="footer border-top pl-3 text-muted">
-    <div class="container">
-        &copy; 2022 - CS4125
-        @{
-            var foundPrivacy = Url.Page("/Privacy", new {area = ""});
-        }
-        @if (foundPrivacy != null)
-        {
-            <a asp-area="" asp-page="/Privacy">Privacy</a>
-        }
-    </div>
-</footer>
+
 
 <environment include="Development">
     <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
