@@ -16,5 +16,14 @@ namespace CS4125.Tests
 
             Assert.Equal(expected1.GetType(), actual1.GetType());
         }
+        
+        [Fact]
+        // Test to see if the factory method returns an error when an invalid animal type is passed
+        public void CreateAnimal_WithInvalidAnimalType_ReturnsError()
+        {
+            var expected2 = Assert.Throws<ArgumentException>(() => AnimalFactory.CreateAnimal("Dog", "Red_Setter"));
+
+            Assert.Equal(typeof(ArgumentException), expected2.GetType());
+        }
     }
 }
