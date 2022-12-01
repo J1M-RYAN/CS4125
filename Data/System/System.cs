@@ -9,7 +9,7 @@ public class System : IRegister, ISubject
 {
     private readonly HashSet<IObserver> _paidSubscribers;
     private readonly HashSet<User> _users;
-    private CompanyData _companyData;
+    private readonly CompanyData _companyData;
 
     public System()
     {

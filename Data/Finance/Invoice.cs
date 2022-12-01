@@ -4,6 +4,9 @@ namespace CS4125.Data.Finance;
 
 public class Invoice
 {
+    private Address _businessAddress;
+
+    private string _businessName;
     private DateTime _date;
 
     private Farmer _farmer;
@@ -12,11 +15,7 @@ public class Invoice
 
     private double _total;
 
-    private String _businessName;
-
-    private Address _businessAddress;
-
-    public Invoice(Farmer farmer, double total, String businessName, Address businessAddress)
+    public Invoice(Farmer farmer, double total, string businessName, Address businessAddress)
 
     {
         _farmer = farmer;
@@ -25,7 +24,6 @@ public class Invoice
         _paid = false;
         _businessAddress = businessAddress;
         _businessName = businessName;
-
     }
 
     public bool IsPaid()

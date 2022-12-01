@@ -8,9 +8,4 @@ public class InvoiceDecorator : InvoiceBase
     {
         Invoice = invoice;
     }
-
-    public override double CalculateTotalInvoicePrice()
-    {
-        return Invoice.CalculateTotalInvoicePrice();
-    }
 }

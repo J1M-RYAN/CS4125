@@ -13,9 +13,7 @@ public abstract class InvoiceBase
     protected List<Animal> Animals = null!;
     protected List<Site> Sites = null!;
 
-    public abstract double CalculateTotalInvoicePrice();
-
-    protected double CalculateTotalAnimalPrice()
+    public double CalculateTotalAnimalPrice()
     {
         double total = 0;
         foreach (var animal in Animals)
@@ -36,7 +34,7 @@ public abstract class InvoiceBase
         return total;
     }
 
-    protected double CalculateTotalSitePrice()
+    public double CalculateTotalSitePrice()
     {
         return Sites.Sum(site => BaseSitePrice);
     }
@@ -167,13 +165,28 @@ public abstract class InvoiceBase
         return price;
     }
 
-
     private static double adjustPriceBasedOnSex(Animal animal, double price)
     {
         if (animal.GetSex() == Sex.Male)
             price *= 1.1;
         else
             price *= 0.9;
+
+        return price;
+    }
+
+    public double CalculateBasePrice()
+    {
+        //calculate price of all animals and sites and add it together
+        var price = Animals.Sum(animal => animal switch
+        {
+            Bovine bovine => GetBovinePrice(bovine),
+            Ovine ovine => GetOvinePrice(ovine),
+            Equine equine => GetEquinePrice(equine),
+            _ => 0
+        });
+
+        price += Sites.Sum(site => CalculateTotalSitePrice());
 
         return price;
     }

@@ -1,6 +1,6 @@
 ﻿using CS4125.Data.AnimalData;
 using CS4125.Data.Finance;
-using CS4125.Data.System;
+using CS4125.Data.Finance.State;
 
 namespace CS4125.Data.UserData;
 
@@ -8,10 +8,13 @@ namespace CS4125.Data.UserData;
 public class Farmer : User, IObserver
 {
     private readonly HashSet<Invoice> _invoices;
+
+    public State state;
     private System.System subject;
     public Tier Tier;
 
-    public Farmer(System.System subject, string email, string firstName, string lastName, string password) : base(email, firstName, lastName,
+    public Farmer(System.System subject, string email, string firstName, string lastName, string password) : base(email,
+        firstName, lastName,
         password)
     {
         _invoices = new HashSet<Invoice>();
@@ -24,7 +27,7 @@ public class Farmer : User, IObserver
 
     public void Update(ISubject subject)
     {
-        System.System system = subject as System.System; 
+        var system = subject as System.System;
         _invoices.Add(new Invoice(this, 25, system.GetCompanyData().getName(), system.GetCompanyData().getAddress()));
     }
 
@@ -49,6 +52,15 @@ public class Farmer : User, IObserver
         foreach (var site in Sites) animals.AddRange(site.GetAnimals());
 
         return animals;
+    }
+
+    public Invoice GetInvoiceToPay()
+    {
+        foreach (var invoice in _invoices)
+            if (!invoice.IsPaid())
+                return invoice;
+
+        return null;
     }
 }
 
