@@ -41,14 +41,18 @@ public class AdminTasks
                     case Tier.Gold:
                     {
                         var baseInvoice = new SilverTierInvoice(farmer);
-                        var goldTierInvoice = new GoldTierInvoice(baseInvoice);
-                        //tier is bronze, so make a new GoldTierSub state
+                        //tier is gold, so make a new GoldTierSub state
+                        farmer.State = new SilverTierSub(farmer.State);
+                        var invoiceTotal = farmer.State.CalculateTotalInvoicePrice(baseInvoice);
                         farmer.State = new GoldTierSub(farmer.State);
-                        var invoiceTotal = farmer.State.CalculateTotalInvoicePrice(goldTierInvoice);
-                        var invoice = new Invoice(farmer, invoiceTotal, system.GetCompanyData().getName(),
+                        var invoiceGoldTotal = farmer.State.CalculateTotalInvoicePrice(baseInvoice);
+
+                        var invoice = new Invoice(farmer, invoiceGoldTotal, system.GetCompanyData().getName(),
                             system.GetCompanyData().getAddress());
 
-                        farmer.AddInvoice(invoice);
+                        Invoice newInvoice = GoldTierSub.ImportInvoice(invoice,baseInvoice,invoiceTotal);
+
+                        farmer.AddInvoice(newInvoice);
                         break;
                     }
                     default:

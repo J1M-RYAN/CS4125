@@ -4,16 +4,16 @@ namespace CS4125.Data.Finance;
 
 public class Invoice
 {
-    private Address _businessAddress;
+    public Address _businessAddress;
 
-    private string _businessName;
-    private DateTime _date;
+    public string _businessName;
+    public DateTime _date;
 
-    private Farmer _farmer;
+    public Farmer _farmer;
 
-    private bool _paid;
+    public bool _paid;
 
-    private double _total;
+    public double _total;
 
     public Invoice(Farmer farmer, double total, string businessName, Address businessAddress)
 
@@ -40,4 +40,5 @@ public class Invoice
     {
         return _total;
     }
+    
 }

@@ -178,16 +178,13 @@ public abstract class InvoiceBase
     public double CalculateBasePrice()
     {
         //calculate price of all animals and sites and add it together
-        var price = Animals.Sum(animal => animal switch
-        {
-            Bovine bovine => GetBovinePrice(bovine),
-            Ovine ovine => GetOvinePrice(ovine),
-            Equine equine => GetEquinePrice(equine),
-            _ => 0
-        });
-
-        price += Sites.Sum(site => CalculateTotalSitePrice());
+        var price = CalculateTotalAnimalPrice() + CalculateTotalAnimalPrice();
 
         return price;
+    }
+
+    public double GetTotalPrice()
+    {
+        throw new NotImplementedException();
     }
 }
