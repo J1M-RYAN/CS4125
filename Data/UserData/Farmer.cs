@@ -1,7 +1,9 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Diagnostics;
 using CS4125.Data.AnimalData;
 using CS4125.Data.Finance;
 using CS4125.Data.Finance.State;
+using Microsoft.VisualStudio.Web.CodeGeneration.Utils;
+using static System.Diagnostics.Contracts.Contract;
 
 namespace CS4125.Data.UserData;
 
@@ -85,15 +87,29 @@ public class Farmer : User, IObserver
         return capacity;
     }
 
-    
     public void  AddSite()
     {
-        Contract.Requires(Sites.Count < MAX_SITES);
+        Requires(Sites.Count < MAX_SITES);
+     
         var countBefore = Sites.Count;
         Sites.Add(new Site("site 1", new Address()));
-        
-        Contract.Ensures(Sites.Count == countBefore + 1);
+        Ensures(Sites.Count == countBefore + 1);
     }
+
+    public List<Animal> GetAnimals()
+    {
+        //get animals from all sites in a list
+        var animals = new List<Animal>();
+        foreach (var site in Sites) animals.AddRange(site.GetAnimals());
+        
+        return animals;
+        
+    }
+
+
+
+
+
 }
 
 public enum Tier

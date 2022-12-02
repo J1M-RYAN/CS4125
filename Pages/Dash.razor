@@ -8,7 +8,9 @@
 @using CS4125.Data.AnimalData
 @using CS4125.Data.UserData
 @using CS4125.Data.System
+@using System.Collections
 @* @inject SystemController systemController *@
+<html>
 <div>
     <div class="header">
         <h1>Overview</h1>
@@ -16,6 +18,13 @@
         <div class="account">
             <div>@_message</div>
             <div style="color:@_colour">@_tier</div>
+            <!--hide upgrade button if tier is gold-->
+            @if (_farmer.Tier.ToString() != "Gold")
+            {
+                <button @onclick="UpgradeTier" class="nav-link btn btn-link" style="width: 100%;">
+                    Upgrade Account Tier
+                </button>
+            }
             <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
@@ -40,47 +49,109 @@
         </div>
         <div class="card">
             <div class="card-title">Next Payment Due</div>
-            <div class="card-content">@expirationDate</div>
+            <div class="card-content">@_expirationDate</div>
         </div>
 
     </div>
-        <button  @onclick="(() => AddSite()) " class="nav-link btn btn-link" style="width: 100%;">
-            Add site!
+
+    <body>
+    <div>
+        <button @onclick="AddSite" class="nav-link btn btn-link">
+            Add site
         </button>
-        <button  @onclick="(() => AddAnimal()) " class="nav-link btn btn-link" style="width: 100%;">
-        Add Animal!
+        <button @onclick="AddBull" class="nav-link btn btn-link">
+            Add Bovine Ayrshire Bull
         </button>
-    <button  @onclick="(() => UpgradeTier()) " class="nav-link btn btn-link" style="width: 100%;">
-        Upgrade tier!
-    </button>
+        <button @onclick="AddCow" class="nav-link btn btn-link">
+            Add Bovine Holstein Cow
+        </button>
+        <button @onclick="AddRam" class="nav-link btn btn-link" >
+            Add Ovine Kerry Hill Ram
+        </button>
+        <button @onclick="AddEwe" class="nav-link btn btn-link">
+            Add Ovine Cheviot Ewe
+        </button>
+        <button @onclick="AddMare" class="nav-link btn btn-link">
+            Add Equine Arabian Mare
+        </button>
+        <button @onclick="AddStallion" class="nav-link btn btn-link">
+            Add Equine Cremello Stallion
+        </button>
+
+
+    </div>
     
+    <div>
+        
+        Display all animals
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Animal ID
+                </th>
+                <th>
+                    Animal Type
+                </th>
+                <th>
+                    Animal Breed
+                </th>
+            </tr>
+            </thead>
+        </table>
+                @foreach (Animal animal in _animals)
+                {
+                    <tr>
+                        <td>
+                            @animal._id
+                        </td>
+                        <td>
+                            @animal.GetType()
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+            
+
+
+
+
+    </div>
+    </body>
 </div>
 
+</html>
+
 @code {
+
+
     //run LogUsername on load
     protected override async Task OnInitializedAsync()
     {
-        DateTime startDate = DateTime.Now;
-        DateTime expiryDate = startDate.AddDays(30);
-        expirationDate = expiryDate.ToString("dd/MM/yyyy");
+        var startDate = DateTime.Now;
+        var expiryDate = startDate.AddDays(30);
+        _expirationDate = expiryDate.ToString("dd/MM/yyyy");
         await GetUser();
     }
+
     string _message = "User not authenticated!";
     System _system = SystemController.System;
-    Farmer _farmer;
+    Farmer _farmer = null!;
     string _tier = "";
-    
+
     int _siteCount = 404;
     int _animalCount = 404;
     int _siteCapacity = 404;
-    string expirationDate = "";
+    string _expirationDate = "";
     string _colour = "black";
+
     private async Task GetUser()
     {
         var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
-        if (user.Identity.IsAuthenticated)
+        if (user.Identity != null && user.Identity.IsAuthenticated)
         {
             var currentUser = await _userManager.GetUserAsync(user);
             if (currentUser == null)
@@ -88,17 +159,17 @@
                 _message = "User not found";
                 return;
             }
-            if (currentUser.Email != null) _message = (currentUser.Email);
-            _farmer = (Farmer)FindUser(currentUser.Id);
+            if (currentUser.Email != null) _message = currentUser.Email;
+            _farmer = (Farmer) FindUser(currentUser.Id);
             _siteCount = _farmer.GetSiteCount();
             _animalCount = _farmer.GetAnimalCount();
             _siteCapacity = _farmer.GetRemainingCapacity();
 
 
-            Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
-            _farmer = (Farmer)_system.GetUser(currentUser.Id);
-            _tier = ""+_farmer.Tier;
-            updateColours();
+            Console.WriteLine($"{user.Identity.Name} is authenticated.{currentUser.Id}");
+            _farmer = (Farmer) _system.GetUser(currentUser.Id);
+            _tier = "" + _farmer.Tier;
+            UpdateColours();
         }
         else
         {
@@ -113,56 +184,58 @@
 
         return user;
     }
-    
+    private IEnumerable _animals = new List<Animal>();
     //update the page
     public void Update()
     {
         _siteCount = _farmer.GetSiteCount();
         _animalCount = _farmer.GetAnimalCount();
         _siteCapacity = _farmer.GetRemainingCapacity();
-        _tier = ""+_farmer.Tier;
-        updateColours();
+        _tier = "" + _farmer.Tier;
+        UpdateColours();
+        _animals= _farmer.Sites[0].GetAnimals();
+
     }
-    
+
     //call update whenever a site is added
     public void AddSite()
     {
         _farmer.AddSite();
         Update();
     }
-    
+
     //call update whenever an animal is added
-    public void AddAnimal()
+    public void AddAnimal(string animalType, string breed)
     {
-        Animal animal = new Bull(12, DateTime.Now,BovineBreed.Ayrshire);
+        var animal = AnimalFactory.CreateAnimal("Bull", "Ayrshire");
         _farmer.Sites[0].AddAnimal(animal);
         Update();
     }
-    
+
     //call update whenever a tier is upgraded
     public void UpgradeTier()
     {
-        //if farmer is bronze make him silver, if he is silver make him gold, if he is gold, tell the user he is already gold
-        if (_farmer.Tier == Tier.Bronze)
+        switch (_farmer.Tier)
         {
-            _farmer.Tier = Tier.Silver;
+    //if farmer is bronze make him silver, if he is silver make him gold, if he is gold, tell the user he is already gold
+            case Tier.Bronze:
+                _farmer.Tier = Tier.Silver;
+                break;
+            case Tier.Silver:
+                _farmer.Tier = Tier.Gold;
+                break;
+            default:
+                Console.WriteLine("You are already gold!");
+                break;
         }
-        else if (_farmer.Tier == Tier.Silver)
-        {
-            _farmer.Tier = Tier.Gold;
-        }
-        else
-        {
-            Console.WriteLine("You are already gold!"); 
-        }
-        
+
         Update();
     }
-    
+
     //update the colours of the page
-    public void updateColours()
+    public void UpdateColours()
     {
-        _colour= _farmer.Tier switch
+        _colour = _farmer.Tier switch
         {
             
             Tier.Bronze => "brown",
@@ -172,5 +245,48 @@
             
             };
     }
+
+    private void AddBull()
+    {
+        var animal = AnimalFactory.CreateAnimal("Bull", "Ayrshire");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
+    private void AddCow()
+    {
+        var animal = AnimalFactory.CreateAnimal("Cow", "Holstein");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
+    private void AddRam()
+    {
+        var animal = AnimalFactory.CreateAnimal("Ram", "KerryHill");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
+    private void AddEwe()
+    {
+        var animal = AnimalFactory.CreateAnimal("Ewe", "Cheviot");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
+    private void AddMare()
+    {
+        var animal = AnimalFactory.CreateAnimal("Mare", "Arabian");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
+    private void AddStallion()
+    {
+        var animal = AnimalFactory.CreateAnimal("Stallion", "Cremello");
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+
 
 }

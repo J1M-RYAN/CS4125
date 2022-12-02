@@ -4,7 +4,7 @@ public abstract class Animal
 {
     private readonly DateTime _dateOfBirth;
     public Sex _sex;
-    private int _id;
+    public int _id;
 
     private bool _isVacinated;
 

@@ -2,7 +2,7 @@ namespace CS4125.Data.AnimalData;
 
 public class AnimalFactory
 {
-    private static int _id;
+    private static int _id=19192363;
 
     public static Animal CreateAnimal(string animalType, string breed)
     {

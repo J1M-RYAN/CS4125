@@ -51,4 +51,14 @@ public class Site : ISite
         var remainingCapacity = MAX_ANIMALS - _animals.Count;
         return remainingCapacity;
     }
+    
+    
+    //list of all objects in all 
+    public IEnumerable<Animal> GetAnimalsByType(string animalType)
+    {
+        var animals = _animals.Where(a => a.GetType().Name == animalType);
+        return animals;
+    }
+    
+    
 }
