@@ -67,4 +67,19 @@ public class System : IRegister, ISubject
     {
         return _userDictionary[id];
     }
+    
+    // Get all the farmers
+    public List<Farmer> GetFarmers()
+    {
+        var farmers = new List<Farmer>();
+        foreach (var user in _users)
+        {
+            if (user is Farmer)
+            {
+                farmers.Add((Farmer)user);
+            }
+        }
+
+        return farmers;
+    }
 }

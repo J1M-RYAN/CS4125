@@ -35,4 +35,9 @@ public class Invoice
     {
         _paid = true;
     }
+    
+    public double GetTotal()
+    {
+        return _total;
+    }
 }
