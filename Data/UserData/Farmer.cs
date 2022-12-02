@@ -1,4 +1,5 @@
-﻿using CS4125.Data.AnimalData;
+﻿using System.Diagnostics.Contracts;
+using CS4125.Data.AnimalData;
 using CS4125.Data.Finance;
 using CS4125.Data.Finance.State;
 
@@ -8,6 +9,7 @@ namespace CS4125.Data.UserData;
 public class Farmer : User, IObserver
 {
     private readonly HashSet<Invoice> _invoices;
+    private static int MAX_SITES = 10;
 
     public State State;
     private System.System _subject;
@@ -83,9 +85,14 @@ public class Farmer : User, IObserver
         return capacity;
     }
 
-    public void AddSite()
+    
+    public void  AddSite()
     {
+        Contract.Requires(Sites.Count < MAX_SITES);
+        var countBefore = Sites.Count;
         Sites.Add(new Site("site 1", new Address()));
+        
+        Contract.Ensures(Sites.Count == countBefore + 1);
     }
 }
 
