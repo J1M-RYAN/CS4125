@@ -10,14 +10,9 @@ public class SystemController
     {
         System.Attach(f);
     }
-
-
+    
     public static void RemoveSubscriber(IObserver f)
     {
         System.Detach(f);
-    }
-
-    public void CreateInvoice()
-    {
     }
 }

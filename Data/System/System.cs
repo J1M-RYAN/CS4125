@@ -7,20 +7,11 @@ namespace CS4125.Data.System;
 // Concrete Subject
 public class System : IRegister, ISubject
 {
-    private readonly HashSet<IObserver> _paidSubscribers;
-    private readonly HashSet<User> _users;
-    private readonly CompanyData _companyData;
-
-    private Dictionary<string, User> _userDictionary;
-
-    public System()
-    {
-        _users = new HashSet<User>();
-        _paidSubscribers = new HashSet<IObserver>();
-        var address = new Address();
-        _companyData = new CompanyData("Farm Ledger", address);
-        _userDictionary = new Dictionary<string, User>();
-    }
+    private static  HashSet<IObserver> _paidSubscribers= new();
+    private static  HashSet<User> _users = new();
+    private static  CompanyData _companyData = new("Farm Ledger", new Address());
+    private static  Dictionary<string, User> _userDictionary = new();
+    
 
 
     public void RegisterFarmer(string email, string firstName, string lastName, string password)

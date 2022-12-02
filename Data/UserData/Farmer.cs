@@ -105,11 +105,6 @@ public class Farmer : User, IObserver
         return animals;
         
     }
-
-
-
-
-
 }
 
 public enum Tier
