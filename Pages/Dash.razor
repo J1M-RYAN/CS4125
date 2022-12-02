@@ -5,6 +5,7 @@
 @inject UserManager<IdentityUser> _userManager
 @inject SignInManager<IdentityUser> _signInManager
 @using CS4125.Controllers
+@using CS4125.Data.AnimalData
 @using CS4125.Data.UserData
 @using CS4125.Data.System
 @* @inject SystemController systemController *@
@@ -14,7 +15,8 @@
         Welcome to Farm Ledger.
         <div class="account">
             <div>@_message</div>
-            <img class="profile-logo" src="profile-icon.png" alt="profile logo" />
+            <div style="color:@_colour">@_tier</div>
+            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
             <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
                 <input name="__RequestVerificationToken" type="hidden" value="">
                 <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">
@@ -33,31 +35,46 @@
             <div class="card-content">@_animalCount</div>
         </div>
         <div class="card">
-            <div class="card-title">Remaining Site Capacity</div>
+            <div class="card-title">Remaining Capacity</div>
             <div class="card-content">@_siteCapacity</div>
         </div>
         <div class="card">
             <div class="card-title">Next Payment Due</div>
-            <div class="card-content">1/10/22</div>
+            <div class="card-content">@expirationDate</div>
         </div>
 
     </div>
+        <button  @onclick="(() => AddSite()) " class="nav-link btn btn-link" style="width: 100%;">
+            Add site!
+        </button>
+        <button  @onclick="(() => AddAnimal()) " class="nav-link btn btn-link" style="width: 100%;">
+        Add Animal!
+        </button>
+    <button  @onclick="(() => UpgradeTier()) " class="nav-link btn btn-link" style="width: 100%;">
+        Upgrade tier!
+    </button>
+    
 </div>
 
 @code {
     //run LogUsername on load
     protected override async Task OnInitializedAsync()
     {
+        DateTime startDate = DateTime.Now;
+        DateTime expiryDate = startDate.AddDays(30);
+        expirationDate = expiryDate.ToString("dd/MM/yyyy");
         await GetUser();
     }
     string _message = "User not authenticated!";
     System _system = SystemController.System;
     Farmer _farmer;
-
+    string _tier = "";
+    
     int _siteCount = 404;
     int _animalCount = 404;
     int _siteCapacity = 404;
-
+    string expirationDate = "";
+    string _colour = "black";
     private async Task GetUser()
     {
         var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
@@ -80,6 +97,8 @@
 
             Console.WriteLine($"{user.Identity.Name} is authenticated.{ currentUser.Id }");
             _farmer = (Farmer)_system.GetUser(currentUser.Id);
+            _tier = ""+_farmer.Tier;
+            updateColours();
         }
         else
         {
@@ -93,6 +112,65 @@
         var user = _system.GetUser(id);
 
         return user;
+    }
+    
+    //update the page
+    public void Update()
+    {
+        _siteCount = _farmer.GetSiteCount();
+        _animalCount = _farmer.GetAnimalCount();
+        _siteCapacity = _farmer.GetRemainingCapacity();
+        _tier = ""+_farmer.Tier;
+        updateColours();
+    }
+    
+    //call update whenever a site is added
+    public void AddSite()
+    {
+        _farmer.AddSite();
+        Update();
+    }
+    
+    //call update whenever an animal is added
+    public void AddAnimal()
+    {
+        Animal animal = new Bull(12, DateTime.Now,BovineBreed.Ayrshire);
+        _farmer.Sites[0].AddAnimal(animal);
+        Update();
+    }
+    
+    //call update whenever a tier is upgraded
+    public void UpgradeTier()
+    {
+        //if farmer is bronze make him silver, if he is silver make him gold, if he is gold, tell the user he is already gold
+        if (_farmer.Tier == Tier.Bronze)
+        {
+            _farmer.Tier = Tier.Silver;
+        }
+        else if (_farmer.Tier == Tier.Silver)
+        {
+            _farmer.Tier = Tier.Gold;
+        }
+        else
+        {
+            Console.WriteLine("You are already gold!"); 
+        }
+        
+        Update();
+    }
+    
+    //update the colours of the page
+    public void updateColours()
+    {
+        _colour= _farmer.Tier switch
+        {
+            
+            Tier.Bronze => "brown",
+            Tier.Silver => "silver",
+            Tier.Gold => "gold",
+            _ => "black"
+            
+            };
     }
 
 }
