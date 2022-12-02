@@ -45,3 +45,25 @@
     font-size: 2rem;
     font-weight: 500;
 }
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: 40px;
+    background-color: #04ddb2;
+}
+
+.sidebar div {
+    padding: 8px;
+    font-size: 24px;
+    display: block;
+    color: white;
+    cursor: pointer;
+}
+
+.body-text {
+    margin-left: 250px;
+}

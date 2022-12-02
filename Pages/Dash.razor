@@ -9,96 +9,109 @@
 @using CS4125.Data.UserData
 @using CS4125.Data.System
 @using System.Collections
+@layout EmptyLayout
 @* @inject SystemController systemController *@
 <html>
-<div>
-    <div class="header">
-        <h1>Overview</h1>
-        Welcome to Farm Ledger.
-        <div class="account">
-            <div>@_message</div>
-            <div style="color:@_colour">@_tier</div>
-            <!--hide upgrade button if tier is gold-->
-            @if (_farmer.Tier.ToString() != "Gold")
-            {
-                <button @onclick="UpgradeTier" class="nav-link btn btn-link" style="width: 100%;">
-                    Upgrade Account Tier
+
+<div class="sidebar">
+    <div onclick="@navigateToHome">Home</div>
+    <div onclick="@navigateToAnimal">Animal</div>
+    <div onclick="@navigateToSite">Site</div>
+    <div onclick="@navigateToInvoice">Invoice</div>
+</div>
+
+<div class="body-text">
+    <!-- body content -->
+    @if (currentPage == "home")
+    {
+        <div>
+            <div class="header">
+                <h1>Overview</h1>
+                Welcome to Farm Ledger.
+                <div class="account">
+                    <div>@_message</div>
+                    <div style="color:@_colour">@_tier</div>
+                    <!--hide upgrade button if tier is gold-->
+                    @if (_farmer.Tier.ToString() != "Gold")
+                    {
+                        <button @onclick="UpgradeTier" class="nav-link btn btn-link" style="width: 100%;">
+                            Upgrade Account Tier
+                        </button>
+                    }
+                    <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
+                    <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
+                        <input name="__RequestVerificationToken" type="hidden" value="">
+                        <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-holder">
+                <div class="card">
+                    <div class="card-title">Sites</div>
+                    <div class="card-content">@_siteCount</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Animals</div>
+                    <div class="card-content">@_animalCount</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Remaining Capacity</div>
+                    <div class="card-content">@_siteCapacity</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Next Payment Due</div>
+                    <div class="card-content">@_expirationDate</div>
+                </div>
+
+            </div>
+
+            <body>
+            <div>
+                <button @onclick="AddSite" class="nav-link btn btn-link">
+                    Add site
                 </button>
-            }
-            <img class="profile-logo" src="profile-icon.png" alt="profile logo"/>
-            <form id="logoutForm" method="post" action="Identity/Account/LogOut?returnUrl=%2F">
-                <input name="__RequestVerificationToken" type="hidden" value="">
-                <button type="submit" form="logoutForm" class="nav-link btn btn-link" style="width: 100%;">
-                    Logout
+                <button @onclick="AddBull" class="nav-link btn btn-link">
+                    Add Bovine Ayrshire Bull
                 </button>
-            </form>
-        </div>
-    </div>
-    <div class="card-holder">
-        <div class="card">
-            <div class="card-title">Sites</div>
-            <div class="card-content">@_siteCount</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Animals</div>
-            <div class="card-content">@_animalCount</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Remaining Capacity</div>
-            <div class="card-content">@_siteCapacity</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Next Payment Due</div>
-            <div class="card-content">@_expirationDate</div>
-        </div>
-
-    </div>
-
-    <body>
-    <div>
-        <button @onclick="AddSite" class="nav-link btn btn-link">
-            Add site
-        </button>
-        <button @onclick="AddBull" class="nav-link btn btn-link">
-            Add Bovine Ayrshire Bull
-        </button>
-        <button @onclick="AddCow" class="nav-link btn btn-link">
-            Add Bovine Holstein Cow
-        </button>
-        <button @onclick="AddRam" class="nav-link btn btn-link" >
-            Add Ovine Kerry Hill Ram
-        </button>
-        <button @onclick="AddEwe" class="nav-link btn btn-link">
-            Add Ovine Cheviot Ewe
-        </button>
-        <button @onclick="AddMare" class="nav-link btn btn-link">
-            Add Equine Arabian Mare
-        </button>
-        <button @onclick="AddStallion" class="nav-link btn btn-link">
-            Add Equine Cremello Stallion
-        </button>
+                <button @onclick="AddCow" class="nav-link btn btn-link">
+                    Add Bovine Holstein Cow
+                </button>
+                <button @onclick="AddRam" class="nav-link btn btn-link">
+                    Add Ovine Kerry Hill Ram
+                </button>
+                <button @onclick="AddEwe" class="nav-link btn btn-link">
+                    Add Ovine Cheviot Ewe
+                </button>
+                <button @onclick="AddMare" class="nav-link btn btn-link">
+                    Add Equine Arabian Mare
+                </button>
+                <button @onclick="AddStallion" class="nav-link btn btn-link">
+                    Add Equine Cremello Stallion
+                </button>
 
 
-    </div>
-    
-    <div>
-        
-        Display all animals
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>
-                    Animal ID
-                </th>
-                <th>
-                    Animal Type
-                </th>
-                <th>
-                    Animal Breed
-                </th>
-            </tr>
-            </thead>
-        </table>
+            </div>
+
+            <div>
+
+                Display all animals
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            Animal ID
+                        </th>
+                        <th>
+                            Animal Type
+                        </th>
+                        <th>
+                            Animal Breed
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
                 @foreach (Animal animal in _animals)
                 {
                     <tr>
@@ -112,18 +125,36 @@
                         </td>
                     </tr>
                 }
-            
 
 
 
 
-    </div>
-    </body>
+
+            </div>
+            </body>
+        </div>
+    }
+    @if (currentPage == "animal")
+    {
+        <div>animal</div>
+    }
+    @if (currentPage == "site")
+    {
+        <div>site</div>
+    }
+    @if (currentPage == "invoice")
+        {
+            <div>invoice</div>
+        }
 </div>
+
+
 
 </html>
 
 @code {
+
+    public string currentPage = "home";
 
 
     //run LogUsername on load
@@ -286,6 +317,26 @@
         var animal = AnimalFactory.CreateAnimal("Stallion", "Cremello");
         _farmer.Sites[0].AddAnimal(animal);
         Update();
+    }
+
+    public void navigateToAnimal()
+    {
+        currentPage = "animal";
+    }
+    
+    public void navigateToHome()
+    {
+        currentPage = "home";
+    }
+    
+    public void navigateToInvoice()
+    {
+        currentPage = "invoice";
+    }
+
+    public void navigateToSite()
+    {
+        currentPage = "site";
     }
 
 
