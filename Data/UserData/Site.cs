@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using CS4125.Data.AnimalData;
 
 namespace CS4125.Data.UserData;
@@ -6,7 +7,7 @@ public class Site : ISite
 {
     private readonly HashSet<Animal> _animals;
     private string _name;
-    private int _capacity =100;
+    private static int MAX_ANIMALS = 50;
     
     
 
@@ -28,8 +29,11 @@ public class Site : ISite
 
     public void CreateAnimal(string animalType, string breed)
     {
+        Contract.Requires(_animals.Count < MAX_ANIMALS);
+        var animalCountBefore = _animals.Count;
         var animal = AnimalFactory.CreateAnimal(animalType, breed);
         AddAnimal(animal);
+        Contract.Ensures(_animals.Count == animalCountBefore + 1);
     }
 
     public IEnumerable<Animal> GetAnimals()
@@ -44,7 +48,7 @@ public class Site : ISite
     
     public int GetRemainingCapacity()
     {
-        var remainingCapacity = _capacity - _animals.Count;
+        var remainingCapacity = MAX_ANIMALS - _animals.Count;
         return remainingCapacity;
     }
 }
